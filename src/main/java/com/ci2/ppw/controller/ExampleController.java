@@ -14,12 +14,12 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "newJSFManagedBean")
 @RequestScoped
-public class NewJSFManagedBean {
+public class ExampleController {
 
     /**
      * Creates a new instance of NewJSFManagedBean
      */
-    public NewJSFManagedBean() {
+    public ExampleController() {
     }
     
 }
