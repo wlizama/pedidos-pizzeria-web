@@ -5,21 +5,27 @@
  */
 package com.ci2.ppw.controller;
 
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author wilderlizama
  */
-@Named(value = "newJSFManagedBean")
-@RequestScoped
+@Controller
 public class ExampleController {
 
     /**
      * Creates a new instance of NewJSFManagedBean
      */
-    public ExampleController() {
-    }
+//    public ExampleController() {
+//        
+//    }
     
+    @RequestMapping
+    public String muestraPagina() {
+        return "mainPage";
+    }
+            
 }
