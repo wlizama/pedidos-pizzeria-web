@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author wilderlizama
  */
 @Controller
-public class ExampleController {
+public class MainPageController {
 
     /**
      * Creates a new instance of NewJSFManagedBean
      */
-//    public ExampleController() {
+//    public MainPageController() {
 //        
 //    }
     
     @RequestMapping
-    public String muestraPagina() {
-        return "mainPage";
+    public String mainPage() {
+        return "mainPageView";
     }
             
 }
