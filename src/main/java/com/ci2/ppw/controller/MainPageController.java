@@ -27,5 +27,24 @@ public class MainPageController {
     public String mainPage() {
         return "mainPageView";
     }
-            
+    
+    @RequestMapping("/nosotros")
+    public String nosotros() {
+        return "web/nosotrosView";
+    }
+    
+    @RequestMapping("/pizzas")
+    public String pizzas() {
+        return "web/pizzasView";
+    }
+    
+    @RequestMapping("/productos")
+    public String productos() {
+        return "web/productosView";
+    }
+    
+    @RequestMapping("/registro")
+    public String registro() {
+        return "web/registroView";
+    }
 }
