@@ -11,8 +11,31 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="./resources/css/animate.css">
+
+        <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./resources/css/magnific-popup.css">
+
+        <link rel="stylesheet" href="./resources/css/aos.css">
+
+        <link rel="stylesheet" href="./resources/css/ionicons.min.css">
+
+        <link rel="stylesheet" href="./resources/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="./resources/css/jquery.timepicker.css">
+
+
+        <link rel="stylesheet" href="./resources/css/flaticon.css">
+        <link rel="stylesheet" href="./resources/css/icomoon.css">
+        <link rel="stylesheet" href="./resources/css/style.css">
+        
+        
         <title>${pageTitle}</title>
     <head>
     <body>
