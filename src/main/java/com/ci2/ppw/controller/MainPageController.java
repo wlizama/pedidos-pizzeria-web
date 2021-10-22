@@ -28,23 +28,29 @@ public class MainPageController {
         return "mainPageView";
     }
     
+    @RequestMapping("/menu")
+    public String menu() {
+        return "web/menuView";
+    }
+    
+    
     @RequestMapping("/nosotros")
     public String nosotros() {
         return "web/nosotrosView";
     }
     
-    @RequestMapping("/pizzas")
-    public String pizzas() {
-        return "web/pizzasView";
+    @RequestMapping("/contactanos")
+    public String contactanos() {
+        return "web/contactanosView";
     }
     
-    @RequestMapping("/productos")
-    public String productos() {
-        return "web/productosView";
+    @RequestMapping("/ingresar")
+    public String ingresar() {
+        return "web/ingresarView";
     }
     
-    @RequestMapping("/registro")
-    public String registro() {
-        return "web/registroView";
+    @RequestMapping("/carrito")
+    public String carrito() {
+        return "web/carritoView";
     }
 }
