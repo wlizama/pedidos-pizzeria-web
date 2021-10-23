@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class InicioController {
+public class WebController {
 
     @RequestMapping
     public String inicio() {
