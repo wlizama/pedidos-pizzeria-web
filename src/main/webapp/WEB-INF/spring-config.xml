@@ -11,9 +11,16 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     
-    <context:component-scan base-package="com.ci2.ppw" />
+    <!-- Escaneo de componentes -->
+    <context:component-scan base-package="com.ci2.ppw.controller" />
     
+    <!-- Conversion formateo y validación -->
     <mvc:annotation-driven />
+    
+    <!-- Origen BD -->
+    <bean id="myDataSource" class="org.apache.commons." >
+        
+    </bean>
     
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
