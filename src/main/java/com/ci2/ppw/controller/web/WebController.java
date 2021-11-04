@@ -3,29 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ci2.ppw.controller;
+package com.ci2.ppw.controller.web;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author wilderlizama
- */
-@Controller
-public class MainPageController {
 
-    /**
-     * Creates a new instance of NewJSFManagedBean
-     */
-//    public MainPageController() {
-//        
-//    }
-    
+@Controller
+public class WebController {
+
     @RequestMapping
-    public String mainPage() {
-        return "mainPageView";
+    public String inicio() {
+        return "web/inicioView";
     }
     
     @RequestMapping("/menu")
