@@ -19,7 +19,10 @@
         </div>
     </section>
 
+<<<<<<< HEAD
         <div class="heading-section ftco-animate ">
+=======
+>>>>>>> Wilder
     <section class="ftco-about d-md-flex py-5">
         <div class="one-half img" style="background-image: url(resources/web/images/about.jpg);"></div>
         <div class="one-half ftco-animate">
