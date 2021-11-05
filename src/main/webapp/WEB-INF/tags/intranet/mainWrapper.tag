@@ -10,6 +10,4 @@
 </div>
 
 <!-- Content Row -->
-<div class="row">
-    <jsp:doBody />
-</div>
+<jsp:doBody />
