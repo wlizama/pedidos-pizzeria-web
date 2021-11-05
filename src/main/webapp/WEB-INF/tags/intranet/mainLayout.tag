@@ -30,7 +30,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="intranet">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/intranet" />">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <span class="flaticon-pizza-1"></span>
                     </div>
@@ -49,8 +49,8 @@
                     </a>
                     <div id="mnpedidos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="intranet/pedidos">Lista de pedidos</a>
-                            <a class="collapse-item" href="intranet/comprobantes">Comprobantes</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/pedidos" />">Lista de pedidos</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/comprobantes" />">Comprobantes</a>
                         </div>
                     </div>
                 </li>
@@ -63,7 +63,7 @@
                     </a>
                     <div id="mndelivery" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="intranet/envios">Lista de envios</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/envios" />">Lista de envios</a>
                         </div>
                     </div>
                 </li>
@@ -77,10 +77,10 @@
                     </a>
                     <div id="mnmantenimiento" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="intranet/clientes">Clientes</a>
-                            <a class="collapse-item" href="intranet/productos">Productos</a>
-                            <a class="collapse-item" href="intranet/personal">Personal</a>
-                            <a class="collapse-item" href="intranet/cobertura">Cobertura</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-clientes" />">Clientes</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-productos" />">Productos</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-personal" />">Personal</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-cobertura" />">Cobertura</a>
                         </div>
                     </div>
                 </li>
@@ -94,9 +94,9 @@
                     </a>
                     <div id="mnreportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="intranet/reporte-ventas">Reporte de ventas</a>
-                            <a class="collapse-item" href="intranet/reporte-productos">Reporte Productos</a>
-                            <a class="collapse-item" href="intranet/reporte-cobertura">Reporte de Cobertura</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/reporte-ventas" />">Reporte de ventas</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/reporte-productos" />">Reporte Productos</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/reporte-cobertura" />">Reporte de Cobertura</a>
                         </div>
                     </div>
                 </li>
@@ -135,7 +135,7 @@
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                     <img class="img-profile rounded-circle"
-                                         src="resources/intranet/img/undraw_profile.svg">
+                                         src="<c:url value="/resources/intranet/img/undraw_profile.svg" />">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
