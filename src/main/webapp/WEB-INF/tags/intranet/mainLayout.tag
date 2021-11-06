@@ -3,7 +3,9 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="pageTitle" required="true"%>
-
+<% 
+                HttpSession sesion = request.getSession();
+            %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -133,7 +135,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= sesion.getAttribute("nombre") %></span>
                                     <img class="img-profile rounded-circle"
                                          src="<c:url value="/resources/intranet/img/undraw_profile.svg" />">
                                 </a>
@@ -202,7 +204,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="./login?cerrar=true">Logout</a>
                     </div>
                 </div>
             </div>
@@ -211,20 +213,6 @@
         <script src="<c:url value="/resources/intranet/js/jquery.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/bootstrap.bundle.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>
-            <% 
-                HttpSession sesion = request.getSession();
-                int nivel = 0;
-                if(request.getAttribute("nivel")!=null){
-                    nivel = (Integer)request.getAttribute("nivel");
-                    if (nivel==1){
-                        sesion.setAttribute("nombre", request.getAttribute("nombre"));
-                        sesion.setAttribute("nivel", nivel);
-                        response.sendRedirect("./intranet");
-                    }
-                    else{
-                        response.sendRedirect("./login");
-                    }
-                }
-            %>
+
     </body>
 </html>
