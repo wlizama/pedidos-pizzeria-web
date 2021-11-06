@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@tag description="Layout principal" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
@@ -16,23 +17,23 @@
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
 
-        <link rel="stylesheet" href="resources/web/css/open-iconic-bootstrap.min.css">
-        <link rel="stylesheet" href="resources/web/css/animate.css">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/open-iconic-bootstrap.min.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/animate.css" />" />
 
-        <link rel="stylesheet" href="resources/web/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="resources/web/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="resources/web/css/magnific-popup.css">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/owl.carousel.min.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/owl.theme.default.min.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/magnific-popup.css" />">
 
-        <link rel="stylesheet" href="resources/web/css/aos.css">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/aos.css" />">
 
-        <link rel="stylesheet" href="resources/web/css/ionicons.min.css">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/ionicons.min.css" />">
 
-        <link rel="stylesheet" href="resources/web/css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="resources/web/css/jquery.timepicker.css">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/bootstrap-datepicker.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/jquery.timepicker.css" />">
 
-        <link rel="stylesheet" href="resources/web/css/flaticon.css">
-        <link rel="stylesheet" href="resources/web/css/icomoon.css">
-        <link rel="stylesheet" href="resources/web/css/style.css">        
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/flaticon.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/icomoon.css" />">
+        <link rel="stylesheet" href="<c:url value="/resources/web/css/style.css" />">        
         
         <title>${pageTitle}</title>
     <head>
@@ -114,22 +115,22 @@
         <!-- loader -->
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-        <script src="resources/web/js/jquery.min.js"></script>
-        <script src="resources/web/js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="resources/web/js/popper.min.js"></script>
-        <script src="resources/web/js/bootstrap.min.js"></script>
-        <script src="resources/web/js/jquery.easing.1.3.js"></script>
-        <script src="resources/web/js/jquery.waypoints.min.js"></script>
-        <script src="resources/web/js/jquery.stellar.min.js"></script>
-        <script src="resources/web/js/owl.carousel.min.js"></script>
-        <script src="resources/web/js/jquery.magnific-popup.min.js"></script>
-        <script src="resources/web/js/aos.js"></script>
-        <script src="resources/web/js/jquery.animateNumber.min.js"></script>
-        <script src="resources/web/js/bootstrap-datepicker.js"></script>
-        <script src="resources/web/js/jquery.timepicker.min.js"></script>
-        <script src="resources/web/js/scrollax.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="resources/web/js/google-map.js"></script>
-        <script src="resources/web/js/main.js"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery-migrate-3.0.1.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/popper.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/bootstrap.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.easing.1.3.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.waypoints.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.stellar.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/owl.carousel.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.magnific-popup.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/aos.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.animateNumber.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/bootstrap-datepicker.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/jquery.timepicker.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/scrollax.min.js" />"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/google-map.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/resources/web/js/main.js" />"></script>
     </body>
 </html>
