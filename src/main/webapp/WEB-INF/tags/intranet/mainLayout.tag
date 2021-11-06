@@ -207,10 +207,24 @@
                 </div>
             </div>
         </div>
-
         <!-- Bootstrap core JavaScript-->
         <script src="<c:url value="/resources/intranet/js/jquery.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/bootstrap.bundle.min.js" />"></script>
-        <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>        
+        <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>
+            <% 
+                HttpSession sesion = request.getSession();
+                int nivel = 0;
+                if(request.getAttribute("nivel")!=null){
+                    nivel = (Integer)request.getAttribute("nivel");
+                    if (nivel==1){
+                        sesion.setAttribute("nombre", request.getAttribute("nombre"));
+                        sesion.setAttribute("nivel", nivel);
+                        response.sendRedirect("./intranet");
+                    }
+                    else{
+                        response.sendRedirect("./login");
+                    }
+                }
+            %>
     </body>
 </html>
