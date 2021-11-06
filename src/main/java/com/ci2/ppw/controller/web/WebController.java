@@ -43,4 +43,9 @@ public class WebController {
     public String carrito() {
         return "web/carritoView";
     }
+    
+    @RequestMapping("/registrar")
+    public String registrar() {
+        return "web/registrarView";
+    }
 }
