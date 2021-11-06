@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/intranet" %>
 
@@ -148,27 +149,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach
+                                var="rol"
+                                items="${roles}"
+                            >
                                 <tr>
                                     <td>
                                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
                                     </td>
-                                    <th>1</th>
-                                    <td>dd</td>
+                                    <th>${rol.IdRol}</th>
+                                    <td>${rol.Nombre}</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
-                                    </td>
-                                    <th>2</th>
-                                    <td>dd</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
-                                    </td>
-                                    <th>3</th>
-                                    <td>dd</td>
-                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
