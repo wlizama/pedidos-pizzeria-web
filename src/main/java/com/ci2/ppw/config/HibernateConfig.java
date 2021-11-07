@@ -5,6 +5,7 @@
  */
 package com.ci2.ppw.config;
 
+import com.ci2.ppw.model.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +27,8 @@ public class HibernateConfig {
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
-        //factoryBean.setAnnotatedClasses(User.class);
+        
+        //factoryBean.setAnnotatedClasses(Roles.class);
         return factoryBean;
     }
 
