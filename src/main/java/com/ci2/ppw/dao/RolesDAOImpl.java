@@ -24,7 +24,7 @@ public class RolesDAOImpl implements RolesDAO {
     @Transactional
     public List<Roles> getRoles() {
         Session  session  = sessionFactory.getCurrentSession();
-        Query<Roles> query = session.createQuery("from roles", Roles.class);
+        Query<Roles> query = session.createQuery("from Roles", Roles.class);
         List<Roles> lstRoles = query.getResultList();
         
         return lstRoles;

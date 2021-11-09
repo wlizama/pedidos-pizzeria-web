@@ -28,9 +28,9 @@ public class MantPersonalController {
     @RequestMapping("/mant-personal")
     public String getListas(Model model) {
         
-        List<Roles> lstRoles = rolesService.getRoles();
+        List<Roles> roles = rolesService.getRoles();
         
-        model.addAttribute("roles", lstRoles);
+        model.addAttribute("roles", roles);
         
         return "intranet/mantPersonalView";
     }

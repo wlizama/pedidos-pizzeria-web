@@ -150,15 +150,15 @@
                             </thead>
                             <tbody>
                             <c:forEach
-                                var="rol"
                                 items="${roles}"
+                                var="rol"
                             >
-                                <tr>
+                                <tr">
                                     <td>
                                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
                                     </td>
-                                    <th>${rol.IdRol}</th>
-                                    <td>${rol.Nombre}</td>
+                                    <th>${rol.idRol}</th>
+                                    <td>${rol.nombre}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

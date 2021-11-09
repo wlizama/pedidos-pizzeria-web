@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,26 +22,24 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "acceso")
-@NamedQueries({
-    @NamedQuery(name = "Acceso.findAll", query = "SELECT a FROM Acceso a")})
-public class Acceso implements Serializable {
+public class Acceso {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdAcceso")
     private Integer idAcceso;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "acceso")
     private short acceso;
+    
     @JoinColumn(name = "IdFormulario", referencedColumnName = "IdFormulario")
     @ManyToOne(optional = false)
     private Formulario formulario;
-    @JoinColumns({
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol"),
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")})
+    
+    @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")
     @ManyToOne(optional = false)
     private Roles roles;
 
