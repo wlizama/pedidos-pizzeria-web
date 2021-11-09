@@ -18,8 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,13 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "formulario")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Formulario.findAll", query = "SELECT f FROM Formulario f"),
-    @NamedQuery(name = "Formulario.findByIdFormulario", query = "SELECT f FROM Formulario f WHERE f.idFormulario = :idFormulario"),
-    @NamedQuery(name = "Formulario.findByNombre", query = "SELECT f FROM Formulario f WHERE f.nombre = :nombre"),
-    @NamedQuery(name = "Formulario.findByAlias", query = "SELECT f FROM Formulario f WHERE f.alias = :alias"),
-    @NamedQuery(name = "Formulario.findByIdSistema", query = "SELECT f FROM Formulario f WHERE f.idSistema = :idSistema")})
+    @NamedQuery(name = "Formulario.findAll", query = "SELECT f FROM Formulario f")})
 public class Formulario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,14 +38,18 @@ public class Formulario implements Serializable {
     @Column(name = "IdFormulario")
     private Integer idFormulario;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
+    @Size(max = 45)
     @Column(name = "alias")
     private String alias;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idSistema")
     private int idSistema;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFormulario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formulario")
     private List<Acceso> accesoList;
 
     public Formulario() {
@@ -98,7 +97,6 @@ public class Formulario implements Serializable {
         this.idSistema = idSistema;
     }
 
-    @XmlTransient
     public List<Acceso> getAccesoList() {
         return accesoList;
     }

@@ -24,8 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -33,15 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "pedido")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
-    @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido"),
-    @NamedQuery(name = "Pedido.findByNumero", query = "SELECT p FROM Pedido p WHERE p.numero = :numero"),
-    @NamedQuery(name = "Pedido.findByFechaCreacion", query = "SELECT p FROM Pedido p WHERE p.fechaCreacion = :fechaCreacion"),
-    @NamedQuery(name = "Pedido.findByObservaciones", query = "SELECT p FROM Pedido p WHERE p.observaciones = :observaciones"),
-    @NamedQuery(name = "Pedido.findByFechaPreparacion", query = "SELECT p FROM Pedido p WHERE p.fechaPreparacion = :fechaPreparacion"),
-    @NamedQuery(name = "Pedido.findByFechaEntrega", query = "SELECT p FROM Pedido p WHERE p.fechaEntrega = :fechaEntrega")})
+    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p")})
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,12 +44,15 @@ public class Pedido implements Serializable {
     @Column(name = "IdPedido")
     private Integer idPedido;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "numero")
     private int numero;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
+    @Size(max = 50)
     @Column(name = "observaciones")
     private String observaciones;
     @Column(name = "fecha_preparacion")
@@ -67,7 +63,7 @@ public class Pedido implements Serializable {
     private Date fechaEntrega;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<Comprobante> comprobanteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<DetalleEnvio> detalleEnvioList;
     @JoinColumns({
         @JoinColumn(name = "IdCliente", referencedColumnName = "IdCliente"),
@@ -76,7 +72,7 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     @JoinColumn(name = "idDireccionEnvio", referencedColumnName = "iddireccionCliente")
     @ManyToOne(optional = false)
-    private DireccionCliente idDireccionEnvio;
+    private DireccionCliente direccionCliente;
     @JoinColumns({
         @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado"),
         @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")})
@@ -146,7 +142,6 @@ public class Pedido implements Serializable {
         this.fechaEntrega = fechaEntrega;
     }
 
-    @XmlTransient
     public List<Comprobante> getComprobanteList() {
         return comprobanteList;
     }
@@ -155,7 +150,6 @@ public class Pedido implements Serializable {
         this.comprobanteList = comprobanteList;
     }
 
-    @XmlTransient
     public List<DetalleEnvio> getDetalleEnvioList() {
         return detalleEnvioList;
     }
@@ -172,12 +166,12 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
-    public DireccionCliente getIdDireccionEnvio() {
-        return idDireccionEnvio;
+    public DireccionCliente getDireccionCliente() {
+        return direccionCliente;
     }
 
-    public void setIdDireccionEnvio(DireccionCliente idDireccionEnvio) {
-        this.idDireccionEnvio = idDireccionEnvio;
+    public void setDireccionCliente(DireccionCliente direccionCliente) {
+        this.direccionCliente = direccionCliente;
     }
 
     public Estado getEstado() {
@@ -188,7 +182,6 @@ public class Pedido implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
     public List<Detallepedido> getDetallepedidoList() {
         return detallepedidoList;
     }

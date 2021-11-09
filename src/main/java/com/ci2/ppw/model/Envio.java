@@ -24,8 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,13 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "envio")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Envio.findAll", query = "SELECT e FROM Envio e"),
-    @NamedQuery(name = "Envio.findByIdEnvio", query = "SELECT e FROM Envio e WHERE e.idEnvio = :idEnvio"),
-    @NamedQuery(name = "Envio.findByHoraInicio", query = "SELECT e FROM Envio e WHERE e.horaInicio = :horaInicio"),
-    @NamedQuery(name = "Envio.findByHoraFin", query = "SELECT e FROM Envio e WHERE e.horaFin = :horaFin"),
-    @NamedQuery(name = "Envio.findByNumero", query = "SELECT e FROM Envio e WHERE e.numero = :numero")})
+    @NamedQuery(name = "Envio.findAll", query = "SELECT e FROM Envio e")})
 public class Envio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,14 +43,17 @@ public class Envio implements Serializable {
     @Column(name = "IdEnvio")
     private Integer idEnvio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_inicio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaInicio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaFin;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "numero")
     private int numero;
     @JoinColumns({
@@ -66,8 +63,8 @@ public class Envio implements Serializable {
     private Estado estado;
     @JoinColumn(name = "idRepartidor", referencedColumnName = "idRepartidor")
     @ManyToOne(optional = false)
-    private Repartidor idRepartidor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnvio")
+    private Repartidor repartidor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "envio")
     private List<DetalleEnvio> detalleEnvioList;
 
     public Envio() {
@@ -124,15 +121,14 @@ public class Envio implements Serializable {
         this.estado = estado;
     }
 
-    public Repartidor getIdRepartidor() {
-        return idRepartidor;
+    public Repartidor getRepartidor() {
+        return repartidor;
     }
 
-    public void setIdRepartidor(Repartidor idRepartidor) {
-        this.idRepartidor = idRepartidor;
+    public void setRepartidor(Repartidor repartidor) {
+        this.repartidor = repartidor;
     }
 
-    @XmlTransient
     public List<DetalleEnvio> getDetalleEnvioList() {
         return detalleEnvioList;
     }

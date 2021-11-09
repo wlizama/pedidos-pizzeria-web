@@ -21,8 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,15 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "direccionCliente")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DireccionCliente.findAll", query = "SELECT d FROM DireccionCliente d"),
-    @NamedQuery(name = "DireccionCliente.findByIddireccionCliente", query = "SELECT d FROM DireccionCliente d WHERE d.iddireccionCliente = :iddireccionCliente"),
-    @NamedQuery(name = "DireccionCliente.findByDireccion", query = "SELECT d FROM DireccionCliente d WHERE d.direccion = :direccion"),
-    @NamedQuery(name = "DireccionCliente.findByReferencia", query = "SELECT d FROM DireccionCliente d WHERE d.referencia = :referencia"),
-    @NamedQuery(name = "DireccionCliente.findByLatitud", query = "SELECT d FROM DireccionCliente d WHERE d.latitud = :latitud"),
-    @NamedQuery(name = "DireccionCliente.findByLongitud", query = "SELECT d FROM DireccionCliente d WHERE d.longitud = :longitud"),
-    @NamedQuery(name = "DireccionCliente.findByPrincipal", query = "SELECT d FROM DireccionCliente d WHERE d.principal = :principal")})
+    @NamedQuery(name = "DireccionCliente.findAll", query = "SELECT d FROM DireccionCliente d")})
 public class DireccionCliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +39,10 @@ public class DireccionCliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "iddireccionCliente")
     private Integer iddireccionCliente;
+    @Size(max = 250)
     @Column(name = "direccion")
     private String direccion;
+    @Size(max = 250)
     @Column(name = "referencia")
     private String referencia;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -60,11 +54,11 @@ public class DireccionCliente implements Serializable {
     private Short principal;
     @JoinColumn(name = "idCliente", referencedColumnName = "IdCliente")
     @ManyToOne(optional = false)
-    private Cliente idCliente;
+    private Cliente cliente;
     @JoinColumn(name = "idDistrito", referencedColumnName = "IdDistrito")
     @ManyToOne(optional = false)
-    private Distrito idDistrito;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDireccionEnvio")
+    private Distrito distrito;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "direccionCliente")
     private List<Pedido> pedidoList;
 
     public DireccionCliente() {
@@ -122,23 +116,22 @@ public class DireccionCliente implements Serializable {
         this.principal = principal;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Distrito getIdDistrito() {
-        return idDistrito;
+    public Distrito getDistrito() {
+        return distrito;
     }
 
-    public void setIdDistrito(Distrito idDistrito) {
-        this.idDistrito = idDistrito;
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
     }
 
-    @XmlTransient
     public List<Pedido> getPedidoList() {
         return pedidoList;
     }

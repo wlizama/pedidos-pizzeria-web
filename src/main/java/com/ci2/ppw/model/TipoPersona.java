@@ -18,8 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,11 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tipoPersona")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoPersona.findAll", query = "SELECT t FROM TipoPersona t"),
-    @NamedQuery(name = "TipoPersona.findByIdTipoPersona", query = "SELECT t FROM TipoPersona t WHERE t.idTipoPersona = :idTipoPersona"),
-    @NamedQuery(name = "TipoPersona.findByNombre", query = "SELECT t FROM TipoPersona t WHERE t.nombre = :nombre")})
+    @NamedQuery(name = "TipoPersona.findAll", query = "SELECT t FROM TipoPersona t")})
 public class TipoPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +38,8 @@ public class TipoPersona implements Serializable {
     @Column(name = "IdTipoPersona")
     private Integer idTipoPersona;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersona")
@@ -74,7 +73,6 @@ public class TipoPersona implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }

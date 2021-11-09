@@ -18,8 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,12 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tipoProducto")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoProducto.findAll", query = "SELECT t FROM TipoProducto t"),
-    @NamedQuery(name = "TipoProducto.findByIdTipoProducto", query = "SELECT t FROM TipoProducto t WHERE t.idTipoProducto = :idTipoProducto"),
-    @NamedQuery(name = "TipoProducto.findByNombre", query = "SELECT t FROM TipoProducto t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "TipoProducto.findByDescripcion", query = "SELECT t FROM TipoProducto t WHERE t.descripcion = :descripcion")})
+    @NamedQuery(name = "TipoProducto.findAll", query = "SELECT t FROM TipoProducto t")})
 public class TipoProducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,11 +38,14 @@ public class TipoProducto implements Serializable {
     @Column(name = "idTipoProducto")
     private Integer idTipoProducto;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
     @Column(name = "nombre")
     private String nombre;
+    @Size(max = 500)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoProducto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
     private List<Producto> productoList;
 
     public TipoProducto() {
@@ -85,7 +84,6 @@ public class TipoProducto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @XmlTransient
     public List<Producto> getProductoList() {
         return productoList;
     }

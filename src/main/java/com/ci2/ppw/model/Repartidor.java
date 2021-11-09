@@ -20,8 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,11 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "repartidor")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Repartidor.findAll", query = "SELECT r FROM Repartidor r"),
-    @NamedQuery(name = "Repartidor.findByIdRepartidor", query = "SELECT r FROM Repartidor r WHERE r.idRepartidor = :idRepartidor"),
-    @NamedQuery(name = "Repartidor.findByPlacaUnidad", query = "SELECT r FROM Repartidor r WHERE r.placaUnidad = :placaUnidad")})
+    @NamedQuery(name = "Repartidor.findAll", query = "SELECT r FROM Repartidor r")})
 public class Repartidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,13 +38,14 @@ public class Repartidor implements Serializable {
     @Basic(optional = false)
     @Column(name = "idRepartidor")
     private Integer idRepartidor;
+    @Size(max = 10)
     @Column(name = "placa_unidad")
     private String placaUnidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRepartidor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repartidor")
     private List<Envio> envioList;
     @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
-    private Persona idPersona;
+    private Persona persona;
 
     public Repartidor() {
     }
@@ -73,7 +70,6 @@ public class Repartidor implements Serializable {
         this.placaUnidad = placaUnidad;
     }
 
-    @XmlTransient
     public List<Envio> getEnvioList() {
         return envioList;
     }
@@ -82,12 +78,12 @@ public class Repartidor implements Serializable {
         this.envioList = envioList;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @Override

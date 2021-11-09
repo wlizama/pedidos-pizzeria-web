@@ -18,8 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,12 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tipoDocumentoIdentidad")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoDocumentoIdentidad.findAll", query = "SELECT t FROM TipoDocumentoIdentidad t"),
-    @NamedQuery(name = "TipoDocumentoIdentidad.findByIdTipoDocIdentidad", query = "SELECT t FROM TipoDocumentoIdentidad t WHERE t.idTipoDocIdentidad = :idTipoDocIdentidad"),
-    @NamedQuery(name = "TipoDocumentoIdentidad.findByNombre", query = "SELECT t FROM TipoDocumentoIdentidad t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "TipoDocumentoIdentidad.findByCantidadCaracteres", query = "SELECT t FROM TipoDocumentoIdentidad t WHERE t.cantidadCaracteres = :cantidadCaracteres")})
+    @NamedQuery(name = "TipoDocumentoIdentidad.findAll", query = "SELECT t FROM TipoDocumentoIdentidad t")})
 public class TipoDocumentoIdentidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +36,7 @@ public class TipoDocumentoIdentidad implements Serializable {
     @Basic(optional = false)
     @Column(name = "IdTipoDocIdentidad")
     private Integer idTipoDocIdentidad;
+    @Size(max = 30)
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "cantidad_caracteres")
@@ -79,7 +75,6 @@ public class TipoDocumentoIdentidad implements Serializable {
         this.cantidadCaracteres = cantidadCaracteres;
     }
 
-    @XmlTransient
     public List<DocumentoIdentidad> getDocumentoIdentidadList() {
         return documentoIdentidadList;
     }

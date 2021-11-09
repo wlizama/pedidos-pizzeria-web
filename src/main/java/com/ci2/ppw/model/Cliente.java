@@ -21,8 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,12 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "cliente")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
-    @NamedQuery(name = "Cliente.findByNombreUsuario", query = "SELECT c FROM Cliente c WHERE c.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Cliente.findByContrasenha", query = "SELECT c FROM Cliente c WHERE c.contrasenha = :contrasenha")})
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,11 +39,13 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "IdCliente")
     private Integer idCliente;
+    @Size(max = 50)
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
+    @Size(max = 50)
     @Column(name = "contrasenha")
     private String contrasenha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<DireccionCliente> direccionClienteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Pedido> pedidoList;
@@ -89,7 +86,6 @@ public class Cliente implements Serializable {
         this.contrasenha = contrasenha;
     }
 
-    @XmlTransient
     public List<DireccionCliente> getDireccionClienteList() {
         return direccionClienteList;
     }
@@ -98,7 +94,6 @@ public class Cliente implements Serializable {
         this.direccionClienteList = direccionClienteList;
     }
 
-    @XmlTransient
     public List<Pedido> getPedidoList() {
         return pedidoList;
     }

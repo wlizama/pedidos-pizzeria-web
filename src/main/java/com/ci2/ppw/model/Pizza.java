@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,10 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "pizza")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pizza.findAll", query = "SELECT p FROM Pizza p"),
-    @NamedQuery(name = "Pizza.findByIdPizza", query = "SELECT p FROM Pizza p WHERE p.idPizza = :idPizza")})
+    @NamedQuery(name = "Pizza.findAll", query = "SELECT p FROM Pizza p")})
 public class Pizza implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +42,7 @@ public class Pizza implements Serializable {
     private Estado estado;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false)
-    private Producto idProducto;
+    private Producto producto;
     @JoinColumns({
         @JoinColumn(name = "IdTamanho", referencedColumnName = "IdTamanho"),
         @JoinColumn(name = "IdTamanho", referencedColumnName = "IdTamanho")})
@@ -80,12 +77,12 @@ public class Pizza implements Serializable {
         this.estado = estado;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Tamanho getTamanho() {

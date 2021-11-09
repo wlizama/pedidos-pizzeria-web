@@ -17,8 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,11 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tipoestado")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipoestado.findAll", query = "SELECT t FROM Tipoestado t"),
-    @NamedQuery(name = "Tipoestado.findByIdTipoEstado", query = "SELECT t FROM Tipoestado t WHERE t.idTipoEstado = :idTipoEstado"),
-    @NamedQuery(name = "Tipoestado.findByNombre", query = "SELECT t FROM Tipoestado t WHERE t.nombre = :nombre")})
+    @NamedQuery(name = "Tipoestado.findAll", query = "SELECT t FROM Tipoestado t")})
 public class Tipoestado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +37,8 @@ public class Tipoestado implements Serializable {
     @Column(name = "IdTipoEstado")
     private Integer idTipoEstado;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
     @OneToMany(mappedBy = "tipoestado")
@@ -73,7 +72,6 @@ public class Tipoestado implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
     public List<Estado> getEstadoList() {
         return estadoList;
     }

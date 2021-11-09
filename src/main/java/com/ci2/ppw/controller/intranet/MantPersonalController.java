@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MantPersonalController {
     
     @Autowired
-    private RolesService rolesServices;
+    private RolesService rolesService;
     
     @RequestMapping("/mant-personal")
     public String getListas(Model model) {
         
-        List<Roles> lstRoles = rolesServices.getRoles();
+        List<Roles> lstRoles = rolesService.getRoles();
         
         model.addAttribute("roles", lstRoles);
         

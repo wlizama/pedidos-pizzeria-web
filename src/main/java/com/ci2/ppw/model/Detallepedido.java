@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -27,12 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "detallepedido")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Detallepedido.findAll", query = "SELECT d FROM Detallepedido d"),
-    @NamedQuery(name = "Detallepedido.findByIdDetallePedido", query = "SELECT d FROM Detallepedido d WHERE d.idDetallePedido = :idDetallePedido"),
-    @NamedQuery(name = "Detallepedido.findByCantidad", query = "SELECT d FROM Detallepedido d WHERE d.cantidad = :cantidad"),
-    @NamedQuery(name = "Detallepedido.findByPrecio", query = "SELECT d FROM Detallepedido d WHERE d.precio = :precio")})
+    @NamedQuery(name = "Detallepedido.findAll", query = "SELECT d FROM Detallepedido d")})
 public class Detallepedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +38,7 @@ public class Detallepedido implements Serializable {
     @Column(name = "IdDetallePedido")
     private Integer idDetallePedido;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
     private int cantidad;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -54,7 +51,7 @@ public class Detallepedido implements Serializable {
     private Pedido pedido;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false)
-    private Producto idProducto;
+    private Producto producto;
 
     public Detallepedido() {
     }
@@ -100,12 +97,12 @@ public class Detallepedido implements Serializable {
         this.pedido = pedido;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     @Override

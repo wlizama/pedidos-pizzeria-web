@@ -21,8 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,11 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "estado")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e"),
-    @NamedQuery(name = "Estado.findByIdEstado", query = "SELECT e FROM Estado e WHERE e.idEstado = :idEstado"),
-    @NamedQuery(name = "Estado.findByNombre", query = "SELECT e FROM Estado e WHERE e.nombre = :nombre")})
+    @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e")})
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +41,8 @@ public class Estado implements Serializable {
     @Column(name = "IdEstado")
     private Integer idEstado;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
     @JoinColumns({
@@ -53,11 +52,11 @@ public class Estado implements Serializable {
     private Tipoestado tipoestado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private List<Comprobante> comprobanteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private List<Producto> productoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private List<Envio> envioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private List<DetalleEnvio> detalleEnvioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
     private List<Pizza> pizzaList;
@@ -104,7 +103,6 @@ public class Estado implements Serializable {
         this.tipoestado = tipoestado;
     }
 
-    @XmlTransient
     public List<Comprobante> getComprobanteList() {
         return comprobanteList;
     }
@@ -113,7 +111,6 @@ public class Estado implements Serializable {
         this.comprobanteList = comprobanteList;
     }
 
-    @XmlTransient
     public List<Producto> getProductoList() {
         return productoList;
     }
@@ -122,7 +119,6 @@ public class Estado implements Serializable {
         this.productoList = productoList;
     }
 
-    @XmlTransient
     public List<Envio> getEnvioList() {
         return envioList;
     }
@@ -131,7 +127,6 @@ public class Estado implements Serializable {
         this.envioList = envioList;
     }
 
-    @XmlTransient
     public List<DetalleEnvio> getDetalleEnvioList() {
         return detalleEnvioList;
     }
@@ -140,7 +135,6 @@ public class Estado implements Serializable {
         this.detalleEnvioList = detalleEnvioList;
     }
 
-    @XmlTransient
     public List<Pizza> getPizzaList() {
         return pizzaList;
     }
@@ -149,7 +143,6 @@ public class Estado implements Serializable {
         this.pizzaList = pizzaList;
     }
 
-    @XmlTransient
     public List<Pedido> getPedidoList() {
         return pedidoList;
     }
@@ -158,7 +151,6 @@ public class Estado implements Serializable {
         this.pedidoList = pedidoList;
     }
 
-    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -167,7 +159,6 @@ public class Estado implements Serializable {
         this.personaList = personaList;
     }
 
-    @XmlTransient
     public List<Tipocomprobante> getTipocomprobanteList() {
         return tipocomprobanteList;
     }

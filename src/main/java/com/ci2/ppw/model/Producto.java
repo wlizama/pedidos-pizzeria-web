@@ -21,8 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,14 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "producto")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
-    @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
-    @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
-    @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio"),
-    @NamedQuery(name = "Producto.findByImagen", query = "SELECT p FROM Producto p WHERE p.imagen = :imagen")})
+    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,25 +40,29 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @Column(name = "idProducto")
     private Integer idProducto;
+    @Size(max = 250)
     @Column(name = "nombre")
     private String nombre;
+    @Size(max = 500)
     @Column(name = "descripcion")
     private String descripcion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "precio")
     private BigDecimal precio;
+    @Size(max = 500)
     @Column(name = "imagen")
     private String imagen;
     @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
-    private Estado idEstado;
+    private Estado estado;
     @JoinColumn(name = "idTipoProducto", referencedColumnName = "idTipoProducto")
     @ManyToOne(optional = false)
-    private TipoProducto idTipoProducto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    private TipoProducto tipoProducto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Pizza> pizzaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Detallepedido> detallepedidoList;
 
     public Producto() {
@@ -119,23 +117,22 @@ public class Producto implements Serializable {
         this.imagen = imagen;
     }
 
-    public Estado getIdEstado() {
-        return idEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public TipoProducto getIdTipoProducto() {
-        return idTipoProducto;
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
     }
 
-    public void setIdTipoProducto(TipoProducto idTipoProducto) {
-        this.idTipoProducto = idTipoProducto;
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 
-    @XmlTransient
     public List<Pizza> getPizzaList() {
         return pizzaList;
     }
@@ -144,7 +141,6 @@ public class Producto implements Serializable {
         this.pizzaList = pizzaList;
     }
 
-    @XmlTransient
     public List<Detallepedido> getDetallepedidoList() {
         return detallepedidoList;
     }

@@ -22,7 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,14 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "comprobante")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comprobante.findAll", query = "SELECT c FROM Comprobante c"),
-    @NamedQuery(name = "Comprobante.findByIdComprobante", query = "SELECT c FROM Comprobante c WHERE c.idComprobante = :idComprobante"),
-    @NamedQuery(name = "Comprobante.findByNumero", query = "SELECT c FROM Comprobante c WHERE c.numero = :numero"),
-    @NamedQuery(name = "Comprobante.findByFechaEmision", query = "SELECT c FROM Comprobante c WHERE c.fechaEmision = :fechaEmision"),
-    @NamedQuery(name = "Comprobante.findBySubtotal", query = "SELECT c FROM Comprobante c WHERE c.subtotal = :subtotal"),
-    @NamedQuery(name = "Comprobante.findByTotal", query = "SELECT c FROM Comprobante c WHERE c.total = :total")})
+    @NamedQuery(name = "Comprobante.findAll", query = "SELECT c FROM Comprobante c")})
 public class Comprobante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,14 +41,17 @@ public class Comprobante implements Serializable {
     @Column(name = "IdComprobante")
     private Integer idComprobante;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "numero")
     private int numero;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_emision")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "subtotal")
     private BigDecimal subtotal;
     @Column(name = "total")

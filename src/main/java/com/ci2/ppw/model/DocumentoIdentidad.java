@@ -21,8 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,11 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "documentoIdentidad")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DocumentoIdentidad.findAll", query = "SELECT d FROM DocumentoIdentidad d"),
-    @NamedQuery(name = "DocumentoIdentidad.findByIdDocumentoIdentidad", query = "SELECT d FROM DocumentoIdentidad d WHERE d.idDocumentoIdentidad = :idDocumentoIdentidad"),
-    @NamedQuery(name = "DocumentoIdentidad.findByNumero", query = "SELECT d FROM DocumentoIdentidad d WHERE d.numero = :numero")})
+    @NamedQuery(name = "DocumentoIdentidad.findAll", query = "SELECT d FROM DocumentoIdentidad d")})
 public class DocumentoIdentidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +41,8 @@ public class DocumentoIdentidad implements Serializable {
     @Column(name = "IdDocumentoIdentidad")
     private Integer idDocumentoIdentidad;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "numero")
     private String numero;
     @JoinColumns({
@@ -90,7 +89,6 @@ public class DocumentoIdentidad implements Serializable {
         this.tipoDocumentoIdentidad = tipoDocumentoIdentidad;
     }
 
-    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }

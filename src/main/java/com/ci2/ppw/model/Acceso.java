@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -26,11 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "acceso")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Acceso.findAll", query = "SELECT a FROM Acceso a"),
-    @NamedQuery(name = "Acceso.findByIdAcceso", query = "SELECT a FROM Acceso a WHERE a.idAcceso = :idAcceso"),
-    @NamedQuery(name = "Acceso.findByAcceso", query = "SELECT a FROM Acceso a WHERE a.acceso = :acceso")})
+    @NamedQuery(name = "Acceso.findAll", query = "SELECT a FROM Acceso a")})
 public class Acceso implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,11 +37,12 @@ public class Acceso implements Serializable {
     @Column(name = "IdAcceso")
     private Integer idAcceso;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "acceso")
     private short acceso;
     @JoinColumn(name = "IdFormulario", referencedColumnName = "IdFormulario")
     @ManyToOne(optional = false)
-    private Formulario idFormulario;
+    private Formulario formulario;
     @JoinColumns({
         @JoinColumn(name = "IdRol", referencedColumnName = "IdRol"),
         @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")})
@@ -79,12 +77,12 @@ public class Acceso implements Serializable {
         this.acceso = acceso;
     }
 
-    public Formulario getIdFormulario() {
-        return idFormulario;
+    public Formulario getFormulario() {
+        return formulario;
     }
 
-    public void setIdFormulario(Formulario idFormulario) {
-        this.idFormulario = idFormulario;
+    public void setFormulario(Formulario formulario) {
+        this.formulario = formulario;
     }
 
     public Roles getRoles() {

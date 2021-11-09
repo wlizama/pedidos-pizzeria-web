@@ -21,8 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,14 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "persona")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
-    @NamedQuery(name = "Persona.findByNombres", query = "SELECT p FROM Persona p WHERE p.nombres = :nombres"),
-    @NamedQuery(name = "Persona.findByApellidos", query = "SELECT p FROM Persona p WHERE p.apellidos = :apellidos"),
-    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Persona.findByCelular", query = "SELECT p FROM Persona p WHERE p.celular = :celular")})
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,12 +39,16 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "IdPersona")
     private Integer idPersona;
+    @Size(max = 150)
     @Column(name = "nombres")
     private String nombres;
+    @Size(max = 150)
     @Column(name = "apellidos")
     private String apellidos;
+    @Size(max = 10)
     @Column(name = "telefono")
     private String telefono;
+    @Size(max = 15)
     @Column(name = "celular")
     private String celular;
     @JoinColumns({
@@ -71,7 +68,7 @@ public class Persona implements Serializable {
     private TipoPersona tipoPersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Cliente> clienteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Repartidor> repartidorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Usuario> usuarioList;
@@ -147,7 +144,6 @@ public class Persona implements Serializable {
         this.tipoPersona = tipoPersona;
     }
 
-    @XmlTransient
     public List<Cliente> getClienteList() {
         return clienteList;
     }
@@ -156,7 +152,6 @@ public class Persona implements Serializable {
         this.clienteList = clienteList;
     }
 
-    @XmlTransient
     public List<Repartidor> getRepartidorList() {
         return repartidorList;
     }
@@ -165,7 +160,6 @@ public class Persona implements Serializable {
         this.repartidorList = repartidorList;
     }
 
-    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
