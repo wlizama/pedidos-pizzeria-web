@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -14,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,28 +24,29 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "formulario")
-@NamedQueries({
-    @NamedQuery(name = "Formulario.findAll", query = "SELECT f FROM Formulario f")})
-public class Formulario implements Serializable {
+public class Formulario {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdFormulario")
     private Integer idFormulario;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
+    
     @Size(max = 45)
     @Column(name = "alias")
     private String alias;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "idSistema")
     private int idSistema;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formulario")
     private List<Acceso> accesoList;
 

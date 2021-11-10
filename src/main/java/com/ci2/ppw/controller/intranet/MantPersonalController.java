@@ -7,7 +7,6 @@ package com.ci2.ppw.controller.intranet;
 
 import com.ci2.ppw.dao.RolesDAO;
 import com.ci2.ppw.model.Roles;
-import com.ci2.ppw.services.RolesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MantPersonalController {
     
     @Autowired
-    private RolesService rolesService;
+    private RolesDAO rolesDAO;
     
     @RequestMapping("/mant-personal")
     public String getListas(Model model) {
         
-        List<Roles> roles = rolesService.getRoles();
+        List<Roles> roles = rolesDAO.getRoles();
         
         model.addAttribute("roles", roles);
         
