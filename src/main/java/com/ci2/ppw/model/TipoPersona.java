@@ -23,45 +23,42 @@ import javax.validation.constraints.Size;
  * @author wilderlizama
  */
 @Entity
-@Table(name = "roles")
-public class Roles {
+@Table(name = "tipoPersona")
+public class TipoPersona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdRol")
-    private Integer idRol;
-    
+    @Column(name = "IdTipoPersona")
+    private Integer idTipoPersona;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Acceso> accesoList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Usuario> usuarioList;
 
-    public Roles() {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersona")
+    private List<Persona> personaList;
+
+    public TipoPersona() {
     }
 
-    public Roles(Integer idRol) {
-        this.idRol = idRol;
+    public TipoPersona(Integer idTipoPersona) {
+        this.idTipoPersona = idTipoPersona;
     }
 
-    public Roles(Integer idRol, String nombre) {
-        this.idRol = idRol;
+    public TipoPersona(Integer idTipoPersona, String nombre) {
+        this.idTipoPersona = idTipoPersona;
         this.nombre = nombre;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Integer getIdTipoPersona() {
+        return idTipoPersona;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setIdTipoPersona(Integer idTipoPersona) {
+        this.idTipoPersona = idTipoPersona;
     }
 
     public String getNombre() {
@@ -72,37 +69,29 @@ public class Roles {
         this.nombre = nombre;
     }
 
-    public List<Acceso> getAccesoList() {
-        return accesoList;
+    public List<Persona> getPersonaList() {
+        return personaList;
     }
 
-    public void setAccesoList(List<Acceso> accesoList) {
-        this.accesoList = accesoList;
-    }
-
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setPersonaList(List<Persona> personaList) {
+        this.personaList = personaList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRol != null ? idRol.hashCode() : 0);
+        hash += (idTipoPersona != null ? idTipoPersona.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof TipoPersona)) {
             return false;
         }
-        Roles other = (Roles) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
+        TipoPersona other = (TipoPersona) object;
+        if ((this.idTipoPersona == null && other.idTipoPersona != null) || (this.idTipoPersona != null && !this.idTipoPersona.equals(other.idTipoPersona))) {
             return false;
         }
         return true;
@@ -110,7 +99,7 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "com.ci2.ppw.model.Roles[ idRol=" + idRol + ", nombre=" + nombre + " ]";
+        return "com.ci2.ppw.model.TipoPersona[ idTipoPersona=" + idTipoPersona + " ]";
     }
-
+    
 }

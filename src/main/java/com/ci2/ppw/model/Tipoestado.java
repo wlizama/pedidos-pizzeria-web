@@ -7,7 +7,6 @@ package com.ci2.ppw.model;
 
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,45 +22,42 @@ import javax.validation.constraints.Size;
  * @author wilderlizama
  */
 @Entity
-@Table(name = "roles")
-public class Roles {
+@Table(name = "tipoestado")
+public class Tipoestado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdRol")
-    private Integer idRol;
-    
+    @Column(name = "IdTipoEstado")
+    private Integer idTipoEstado;
+
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Acceso> accesoList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Usuario> usuarioList;
 
-    public Roles() {
+    @OneToMany(mappedBy = "tipoestado")
+    private List<Estado> estadoList;
+
+    public Tipoestado() {
     }
 
-    public Roles(Integer idRol) {
-        this.idRol = idRol;
+    public Tipoestado(Integer idTipoEstado) {
+        this.idTipoEstado = idTipoEstado;
     }
 
-    public Roles(Integer idRol, String nombre) {
-        this.idRol = idRol;
+    public Tipoestado(Integer idTipoEstado, String nombre) {
+        this.idTipoEstado = idTipoEstado;
         this.nombre = nombre;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Integer getIdTipoEstado() {
+        return idTipoEstado;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setIdTipoEstado(Integer idTipoEstado) {
+        this.idTipoEstado = idTipoEstado;
     }
 
     public String getNombre() {
@@ -72,37 +68,29 @@ public class Roles {
         this.nombre = nombre;
     }
 
-    public List<Acceso> getAccesoList() {
-        return accesoList;
+    public List<Estado> getEstadoList() {
+        return estadoList;
     }
 
-    public void setAccesoList(List<Acceso> accesoList) {
-        this.accesoList = accesoList;
-    }
-
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setEstadoList(List<Estado> estadoList) {
+        this.estadoList = estadoList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRol != null ? idRol.hashCode() : 0);
+        hash += (idTipoEstado != null ? idTipoEstado.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof Tipoestado)) {
             return false;
         }
-        Roles other = (Roles) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
+        Tipoestado other = (Tipoestado) object;
+        if ((this.idTipoEstado == null && other.idTipoEstado != null) || (this.idTipoEstado != null && !this.idTipoEstado.equals(other.idTipoEstado))) {
             return false;
         }
         return true;
@@ -110,7 +98,7 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "com.ci2.ppw.model.Roles[ idRol=" + idRol + ", nombre=" + nombre + " ]";
+        return "com.ci2.ppw.model.Tipoestado[ idTipoEstado=" + idTipoEstado + " ]";
     }
-
+    
 }

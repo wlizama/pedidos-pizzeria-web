@@ -23,45 +23,46 @@ import javax.validation.constraints.Size;
  * @author wilderlizama
  */
 @Entity
-@Table(name = "roles")
-public class Roles {
+@Table(name = "tipopizza")
+public class Tipopizza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdRol")
-    private Integer idRol;
-    
+    @Column(name = "IdTipoPizza")
+    private Integer idTipoPizza;
+
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 250)
     @Column(name = "nombre")
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Acceso> accesoList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Usuario> usuarioList;
 
-    public Roles() {
+    @Size(max = 500)
+    @Column(name = "descripcion")
+    private String descripcion;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipopizza")
+    private List<Pizza> pizzaList;
+
+    public Tipopizza() {
     }
 
-    public Roles(Integer idRol) {
-        this.idRol = idRol;
+    public Tipopizza(Integer idTipoPizza) {
+        this.idTipoPizza = idTipoPizza;
     }
 
-    public Roles(Integer idRol, String nombre) {
-        this.idRol = idRol;
+    public Tipopizza(Integer idTipoPizza, String nombre) {
+        this.idTipoPizza = idTipoPizza;
         this.nombre = nombre;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Integer getIdTipoPizza() {
+        return idTipoPizza;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setIdTipoPizza(Integer idTipoPizza) {
+        this.idTipoPizza = idTipoPizza;
     }
 
     public String getNombre() {
@@ -72,37 +73,37 @@ public class Roles {
         this.nombre = nombre;
     }
 
-    public List<Acceso> getAccesoList() {
-        return accesoList;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setAccesoList(List<Acceso> accesoList) {
-        this.accesoList = accesoList;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Pizza> getPizzaList() {
+        return pizzaList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setPizzaList(List<Pizza> pizzaList) {
+        this.pizzaList = pizzaList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRol != null ? idRol.hashCode() : 0);
+        hash += (idTipoPizza != null ? idTipoPizza.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof Tipopizza)) {
             return false;
         }
-        Roles other = (Roles) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
+        Tipopizza other = (Tipopizza) object;
+        if ((this.idTipoPizza == null && other.idTipoPizza != null) || (this.idTipoPizza != null && !this.idTipoPizza.equals(other.idTipoPizza))) {
             return false;
         }
         return true;
@@ -110,7 +111,7 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "com.ci2.ppw.model.Roles[ idRol=" + idRol + ", nombre=" + nombre + " ]";
+        return "com.ci2.ppw.model.Tipopizza[ idTipoPizza=" + idTipoPizza + " ]";
     }
-
+    
 }

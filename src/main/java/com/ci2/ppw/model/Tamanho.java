@@ -23,45 +23,48 @@ import javax.validation.constraints.Size;
  * @author wilderlizama
  */
 @Entity
-@Table(name = "roles")
-public class Roles {
+@Table(name = "tamanho")
+public class Tamanho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdRol")
-    private Integer idRol;
-    
+    @Column(name = "IdTamanho")
+    private Integer idTamanho;
+
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 30)
     @Column(name = "nombre")
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Acceso> accesoList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Usuario> usuarioList;
 
-    public Roles() {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantidadPorciones")
+    private int cantidadPorciones;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tamanho")
+    private List<Pizza> pizzaList;
+
+    public Tamanho() {
     }
 
-    public Roles(Integer idRol) {
-        this.idRol = idRol;
+    public Tamanho(Integer idTamanho) {
+        this.idTamanho = idTamanho;
     }
 
-    public Roles(Integer idRol, String nombre) {
-        this.idRol = idRol;
+    public Tamanho(Integer idTamanho, String nombre, int cantidadPorciones) {
+        this.idTamanho = idTamanho;
         this.nombre = nombre;
+        this.cantidadPorciones = cantidadPorciones;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Integer getIdTamanho() {
+        return idTamanho;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setIdTamanho(Integer idTamanho) {
+        this.idTamanho = idTamanho;
     }
 
     public String getNombre() {
@@ -72,37 +75,37 @@ public class Roles {
         this.nombre = nombre;
     }
 
-    public List<Acceso> getAccesoList() {
-        return accesoList;
+    public int getCantidadPorciones() {
+        return cantidadPorciones;
     }
 
-    public void setAccesoList(List<Acceso> accesoList) {
-        this.accesoList = accesoList;
+    public void setCantidadPorciones(int cantidadPorciones) {
+        this.cantidadPorciones = cantidadPorciones;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Pizza> getPizzaList() {
+        return pizzaList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setPizzaList(List<Pizza> pizzaList) {
+        this.pizzaList = pizzaList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idRol != null ? idRol.hashCode() : 0);
+        hash += (idTamanho != null ? idTamanho.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof Tamanho)) {
             return false;
         }
-        Roles other = (Roles) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
+        Tamanho other = (Tamanho) object;
+        if ((this.idTamanho == null && other.idTamanho != null) || (this.idTamanho != null && !this.idTamanho.equals(other.idTamanho))) {
             return false;
         }
         return true;
@@ -110,7 +113,7 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "com.ci2.ppw.model.Roles[ idRol=" + idRol + ", nombre=" + nombre + " ]";
+        return "com.ci2.ppw.model.Tamanho[ idTamanho=" + idTamanho + " ]";
     }
-
+    
 }
