@@ -19,7 +19,7 @@
     </head>
 
     <body class="text-center">
-        <form class="form-signin" action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
+        <form class="form-signin" action="${pageContext.request.contextPath}/intranet/j_spring_security_check" method='POST'>
             <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Pizzeria Intranet</h1>
             <label for="txtUsuario" class="sr-only">Usuario</label>

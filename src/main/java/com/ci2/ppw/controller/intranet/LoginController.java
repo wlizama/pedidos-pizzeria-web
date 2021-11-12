@@ -13,9 +13,5 @@ public class LoginController {
         return "intranet/loginView";
     }
 
-    @RequestMapping("/logoutSuccessful")
-    public String logoutSuccessful() {
-        return "intranet/logoutSuccessfulView";
-    }
 }
 

@@ -12,8 +12,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+
 /**
  *
  * @author wilderlizama
@@ -23,11 +24,8 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
-    private StandardPasswordEncoder standardPasswordEncoder;
-    
-    @Autowired
     MyDBAuthenticationService myDBAauthenticationService;
-
+    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -36,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("admin1").password("{noop}12345").roles("USER, ADMIN");
 
         // For User in database.
-        auth.userDetailsService(myDBAauthenticationService).passwordEncoder(standardPasswordEncoder);
+        auth.userDetailsService(myDBAauthenticationService).passwordEncoder(NoOpPasswordEncoder.getInstance());
 
     }
 
@@ -53,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/intranet/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
         // For ADMIN only.
-        http.authorizeRequests().antMatchers("/intranet/**").access("hasRole('ROLE_USER')");
+        http.authorizeRequests().antMatchers("/intranet/**").hasAuthority("ROLE_USER");
+                //.hasAuthority("ROLE_USER");
+                //.access("hasRole('ROLE_USER')");
 
         // When the user has logged in as XX.
         // But access a page that requires role YY,
@@ -63,14 +63,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Config for Login Form
         http.authorizeRequests().and().formLogin()
             // Submit URL of login page.
-            .loginProcessingUrl("/j_spring_security_check") // Submit URL
+            .loginProcessingUrl("/intranet/j_spring_security_check") // Submit URL
             .loginPage("/intranet/login")//
             .defaultSuccessUrl("/intranet")//
             .failureUrl("/intranet/login?error=true")//
             .usernameParameter("username")//
             .passwordParameter("password")
             // Config for Logout Page
-            .and().logout().logoutUrl("/intranet/logout").logoutSuccessUrl("/intranet/logoutSuccessful");
+            .and().logout().logoutUrl("/intranet/logout");//.logoutSuccessUrl("/intranet/logoutSuccessful");
 
     }
 }
