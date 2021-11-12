@@ -118,5 +118,5 @@ insert into usuario ( IdUsuario, nombre_usuario, contrasenha, IdPersona, IdRol )
 value( 0, 'suuser' , 123456, 29, 5 ); #SHA1('123456')
 select * from usuario;
 update usuario set contrasenha = '123456';
-update usuario set contrasenha = SHA1('123456')
+update usuario set contrasenha = '$2a$12$I.BUylSPcwys16TbWjkvd.Tu.oi9sCvap5qXpz3bqUKFaqd2zKrde'; # columna contrasenha a 200
 
