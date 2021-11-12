@@ -27,6 +27,8 @@ public class RolesDAOImpl implements RolesDAO {
         Query<Roles> query = session.createQuery("from Roles", Roles.class);
         List<Roles> lstRoles = query.getResultList();
         
+        System.out.println("lstRoles=" + lstRoles);
+        
         return lstRoles;
     }
     

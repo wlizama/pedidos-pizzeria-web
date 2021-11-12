@@ -31,7 +31,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoDAO.findUserInfo(username);
-        System.out.println("UserInfo= " + userInfo);
+        System.out.println("UserInfo= " + userInfo.getPassword() + ", username=" + username);
 
         if (userInfo == null) {
             throw new UsernameNotFoundException("User " + username + " was not found in the database");
@@ -43,8 +43,10 @@ public class MyDBAuthenticationService implements UserDetailsService {
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         if (roles != null) {
             for (String role : roles) {
+                System.out.println("role=" + role);
+
                 // ROLE_USER, ROLE_ADMIN,..
-                GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+                GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
                 grantList.add(authority);
             }
         }

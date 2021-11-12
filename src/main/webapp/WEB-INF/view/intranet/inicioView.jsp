@@ -8,7 +8,4 @@
         <h1>Pizzeria Boungiorno</h1>
         <h2>Admin</h2>
     </div>
-    <%--<t:mainWrapper contentTitle="Inicio">
-        
-    </t:mainWrapper> --%>
 </t:mainLayout>

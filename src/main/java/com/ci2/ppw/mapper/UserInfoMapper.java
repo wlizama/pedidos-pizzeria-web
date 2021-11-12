@@ -19,8 +19,8 @@ public class UserInfoMapper implements RowMapper<UserInfo> {
     @Override
     public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        String userName = rs.getString("Username");
-        String password = rs.getString("Password");
+        String userName = rs.getString("nombre_usuario");
+        String password = rs.getString("contrasenha");
 
         return new UserInfo(userName, password);
     }
