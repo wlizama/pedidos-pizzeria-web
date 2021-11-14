@@ -3,6 +3,7 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="pageTitle" required="true"%>
+<%@attribute name="pageScripts" fragment="true" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,9 @@
         <title>${pageTitle}</title>
     </head>
     <body>
-
+        <div id="loading">
+            <img id="loading-image" src="<c:url value="/resources/intranet/img/pizza-loading.gif" />" alt="Loading..." />
+        </div>
         <!-- Page Wrapper -->
         <div id="wrapper">
 
@@ -160,6 +163,7 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
+                        <div id="error" class="text-danger"></div>
                         <jsp:doBody />
                     </div>
                     <!-- /.container-fluid -->
@@ -212,6 +216,7 @@
         <script src="<c:url value="/resources/intranet/js/jquery.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/bootstrap.bundle.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>
-
+        
+        <jsp:invoke fragment="pageScripts" />
     </body>
 </html>

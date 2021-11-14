@@ -5,7 +5,7 @@
  */
 package com.ci2.ppw.dao;
 
-import com.ci2.ppw.model.Roles;
+import com.ci2.ppw.model.TipoDocumentoIdentidad;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,18 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ *
+ * @author wilderlizama
+ */
 @Repository
-public class RolesDAOImpl implements RolesDAO {
+public class TipoDocumentoIdentidadDAOImpl implements TipoDocumentoIdentidadDAO {
     
     @Autowired
     private SessionFactory sessionFactory;
-
+    
     @Override
     @Transactional
-    public List<Roles> getListaRoles() {
+    public List<TipoDocumentoIdentidad> getListaTipoDocumentoIdentidad() {
         Session  session  = sessionFactory.getCurrentSession();
-        Query<Roles> query = session.createQuery("from Roles", Roles.class);
-        List<Roles> lstResult = query.getResultList();
+        Query<TipoDocumentoIdentidad> query = session.createQuery("from TipoDocumentoIdentidad", TipoDocumentoIdentidad.class);
+        List<TipoDocumentoIdentidad> lstResult = query.getResultList();
         
         return lstResult;
     }

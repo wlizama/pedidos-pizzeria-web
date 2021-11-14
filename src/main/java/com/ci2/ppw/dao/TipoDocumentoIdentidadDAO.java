@@ -5,15 +5,13 @@
  */
 package com.ci2.ppw.dao;
 
-import com.ci2.ppw.model.Roles;
+import com.ci2.ppw.model.TipoDocumentoIdentidad;
 import java.util.List;
 
 /**
  *
  * @author wilderlizama
  */
-
-public interface RolesDAO {
-    
-    public List<Roles> getListaRoles();
+public interface TipoDocumentoIdentidadDAO {
+    public List<TipoDocumentoIdentidad> getListaTipoDocumentoIdentidad();
 }
