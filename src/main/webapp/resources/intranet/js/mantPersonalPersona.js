@@ -8,8 +8,8 @@ function buscarListaPersona(evt) {
     evt.preventDefault();
     $("#loading").css("display", "flex");
     $.ajax({
-        url:"https://pokeapi.co/api/v2/pokemon/ditto", // URL solicitada
-        type:"GET" // Método de solicitud
+        url:"mant-personal/list-personal", // URL solicitada
+        type:"POST" // Método de solicitud
     })
     .done(function (rpt){
         console.log(rpt);

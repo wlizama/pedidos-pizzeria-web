@@ -6,7 +6,6 @@
 package com.ci2.ppw.model;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,9 +59,6 @@ public class Envio {
     @JoinColumn(name = "idRepartidor", referencedColumnName = "idRepartidor")
     @ManyToOne(optional = false)
     private Repartidor repartidor;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "envio")
-    private List<DetalleEnvio> detalleEnvioList;
 
     public Envio() {
     }
@@ -124,14 +120,6 @@ public class Envio {
 
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;
-    }
-
-    public List<DetalleEnvio> getDetalleEnvioList() {
-        return detalleEnvioList;
-    }
-
-    public void setDetalleEnvioList(List<DetalleEnvio> detalleEnvioList) {
-        this.detalleEnvioList = detalleEnvioList;
     }
 
     @Override

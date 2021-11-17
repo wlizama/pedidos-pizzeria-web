@@ -112,7 +112,7 @@ insert into documentoIdentidad ( IdDocumentoIdentidad, numero, IdTipoDocIdentida
 value( 0, 'XXXXXXXXXXXXXXX', 12 );
 select * from documentoIdentidad;
 insert into persona ( IdPersona, nombres, apellidos, telefono, celular,  IdTipoPersona, IdDocumentoIdentidad, IdEstado )
-value(0, 'Super Usuario de Sistema', null, null, null, 13, 30, 27);
+value(0, 'Super Usuario de Sistema', null, null, null, 13, 30, 26);
 select * from persona;
 insert into usuario ( IdUsuario, nombre_usuario, contrasenha, IdPersona, IdRol )
 value( 0, 'suuser' , 123456, 29, 5 ); #SHA1('123456')

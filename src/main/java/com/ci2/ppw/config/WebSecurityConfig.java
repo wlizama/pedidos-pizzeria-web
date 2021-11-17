@@ -5,7 +5,7 @@
  */
 package com.ci2.ppw.config;
 
-import com.ci2.ppw.services.MyDBAuthenticationService;
+import com.ci2.ppw.utils.DBAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
-    MyDBAuthenticationService myDBAauthenticationService;
+    DBAuthenticationService myDBAauthenticationService;
     
     @Autowired
     PasswordEncoder passwordEncoder;

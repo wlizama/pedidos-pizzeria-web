@@ -6,9 +6,7 @@
 package com.ci2.ppw.model;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -59,15 +56,6 @@ public class Pedido {
     @Column(name = "fecha_entrega")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private List<Comprobante> comprobanteList;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private List<DetalleEnvio> detalleEnvioList;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private List<Detallepedido> detallepedidoList;
 
     @JoinColumn(name = "IdCliente", referencedColumnName = "IdCliente")
     @ManyToOne(optional = false)
@@ -140,30 +128,6 @@ public class Pedido {
 
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
-    }
-
-    public List<Comprobante> getComprobanteList() {
-        return comprobanteList;
-    }
-
-    public void setComprobanteList(List<Comprobante> comprobanteList) {
-        this.comprobanteList = comprobanteList;
-    }
-
-    public List<DetalleEnvio> getDetalleEnvioList() {
-        return detalleEnvioList;
-    }
-
-    public void setDetalleEnvioList(List<DetalleEnvio> detalleEnvioList) {
-        this.detalleEnvioList = detalleEnvioList;
-    }
-
-    public List<Detallepedido> getDetallepedidoList() {
-        return detallepedidoList;
-    }
-
-    public void setDetallepedidoList(List<Detallepedido> detallepedidoList) {
-        this.detallepedidoList = detallepedidoList;
     }
 
     public Cliente getCliente() {

@@ -69,33 +69,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mPersonal"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mPersonal"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mPersonal"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                    </tr>
+                                    <c:forEach
+                                        items="${personas}"
+                                        var="persona"
+                                        >
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mPersonal"><i class="fas fa-pen"></i></button>
+                                            </td>
+                                            <th>${persona.idPersona}</th>
+                                            <td>${persona.nombres}</td>
+                                            <td>${persona.telefono}</td>
+                                            <td>${persona.estado.nombre}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

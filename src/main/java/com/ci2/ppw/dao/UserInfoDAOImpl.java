@@ -5,7 +5,7 @@
  */
 package com.ci2.ppw.dao;
 
-import com.ci2.ppw.mapper.UserInfoMapper;
+import com.ci2.ppw.utils.UserInfoMapper;
 import com.ci2.ppw.model.UserInfo;
 import java.util.List;
 import javax.sql.DataSource;

@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -27,7 +26,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "detalleEnvio")
-public class DetalleEnvio implements Serializable {
+public class DetalleEnvio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

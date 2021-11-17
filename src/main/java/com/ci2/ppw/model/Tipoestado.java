@@ -5,14 +5,12 @@
  */
 package com.ci2.ppw.model;
 
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,9 +34,6 @@ public class Tipoestado {
     @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
-
-    @OneToMany(mappedBy = "tipoestado")
-    private List<Estado> estadoList;
 
     public Tipoestado() {
     }
@@ -66,14 +61,6 @@ public class Tipoestado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Estado> getEstadoList() {
-        return estadoList;
-    }
-
-    public void setEstadoList(List<Estado> estadoList) {
-        this.estadoList = estadoList;
     }
 
     @Override

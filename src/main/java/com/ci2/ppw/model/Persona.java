@@ -5,9 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -60,15 +57,6 @@ public class Persona {
     @JoinColumn(name = "IdTipoPersona", referencedColumnName = "IdTipoPersona")
     @ManyToOne(optional = false)
     private TipoPersona tipoPersona;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Cliente> clienteList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Repartidor> repartidorList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Usuario> usuarioList;
 
     public Persona() {
     }
@@ -139,30 +127,6 @@ public class Persona {
 
     public void setTipoPersona(TipoPersona tipoPersona) {
         this.tipoPersona = tipoPersona;
-    }
-
-    public List<Cliente> getClienteList() {
-        return clienteList;
-    }
-
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
-
-    public List<Repartidor> getRepartidorList() {
-        return repartidorList;
-    }
-
-    public void setRepartidorList(List<Repartidor> repartidorList) {
-        this.repartidorList = repartidorList;
-    }
-
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
     }
 
     @Override

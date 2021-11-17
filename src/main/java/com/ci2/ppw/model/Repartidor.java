@@ -5,9 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -36,9 +33,6 @@ public class Repartidor {
     @Size(max = 10)
     @Column(name = "placa_unidad")
     private String placaUnidad;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repartidor")
-    private List<Envio> envioList;
 
     @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
@@ -65,14 +59,6 @@ public class Repartidor {
 
     public void setPlacaUnidad(String placaUnidad) {
         this.placaUnidad = placaUnidad;
-    }
-
-    public List<Envio> getEnvioList() {
-        return envioList;
-    }
-
-    public void setEnvioList(List<Envio> envioList) {
-        this.envioList = envioList;
     }
 
     public Persona getPersona() {

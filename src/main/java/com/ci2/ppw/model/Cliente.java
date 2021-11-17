@@ -5,9 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -41,15 +38,9 @@ public class Cliente {
     @Column(name = "contrasenha")
     private String contrasenha;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<DireccionCliente> direccionClienteList;
-
     @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
     private Persona persona;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Pedido> pedidoList;
 
     public Cliente() {
     }
@@ -82,28 +73,12 @@ public class Cliente {
         this.contrasenha = contrasenha;
     }
 
-    public List<DireccionCliente> getDireccionClienteList() {
-        return direccionClienteList;
-    }
-
-    public void setDireccionClienteList(List<DireccionCliente> direccionClienteList) {
-        this.direccionClienteList = direccionClienteList;
-    }
-
     public Persona getPersona() {
         return persona;
     }
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
     }
 
     @Override
