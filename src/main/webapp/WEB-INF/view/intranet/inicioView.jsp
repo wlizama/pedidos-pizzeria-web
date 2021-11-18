@@ -1,15 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>           
-
-            <% 
-                HttpSession sesion = request.getSession();
-                if(sesion.getAttribute("nivel")==null){
-                    response.sendRedirect("./login");
-                }
-                    else{
-                        
-                    }
-            %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/intranet" %>
 <t:mainLayout pageTitle="Pizzeria - Admin">
     <jsp:body>
