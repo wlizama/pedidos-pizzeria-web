@@ -216,6 +216,7 @@
         <script src="<c:url value="/resources/intranet/js/jquery.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/bootstrap.bundle.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/common.js" />"></script>
         
         <jsp:invoke fragment="pageScripts" />
     </body>

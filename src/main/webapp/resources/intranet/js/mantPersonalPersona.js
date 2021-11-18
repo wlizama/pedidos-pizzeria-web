@@ -5,30 +5,20 @@
  */
 
 function buscarListaPersona(evt) {
-    evt.preventDefault();
-    $("#loading").css("display", "flex");
-    $.ajax({
-        url:"mant-personal/list-personal", // URL solicitada
-        type:"POST" // Método de solicitud
-    })
-    .done(function (rpt){
-        console.log(rpt);
-    })
-    .fail(function (jqXHR, ex){
-        $("#error")
-            .show()
-            .html("<b>XHR Error: </b>" + ex + "<br>"
-                + "<b>Status: </b>" + jqXHR.status + ", "
-                + ((jqXHR.status === 0 ) ? "No conectado, verificar red." : jqXHR.responseText)
-            );
-    })
-    .always(function (){
-        $("#loading").css("display", "none");
-    });
+    if (evt) evt.preventDefault();
+    
+    xhrSession({
+            url: "mant-personal/list-personal", // URL solicitada
+            type: "POST" // Método de solicitud
+        },
+        function (rpt) { // done
+            console.log(rpt);
+        }
+    );
 }
 
 function initEvents() {
-    $("#frmPLBusqueda").submit(buscarListaPersona)
+    $("#frmPLBusqueda").submit(buscarListaPersona);
 }
 
 $(document).ready(initEvents);
