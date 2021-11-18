@@ -5,6 +5,7 @@
  */
 package com.ci2.ppw.config;
 
+import com.ci2.ppw.dao.UserInfoDAO;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -26,6 +27,9 @@ public class AppContext {
     
     @Autowired
     private Environment environment;
+    
+    @Autowired
+    private UserInfoDAO userInfoDAO;
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {

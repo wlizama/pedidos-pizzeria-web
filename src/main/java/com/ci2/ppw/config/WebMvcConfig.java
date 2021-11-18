@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.ci2.ppw.controller" })
+@ComponentScan(basePackages = { "com.ci2.ppw" })
 public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public InternalResourceViewResolver resolver() {

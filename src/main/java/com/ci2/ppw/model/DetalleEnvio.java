@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,12 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,35 +26,35 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "detalleEnvio")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "DetalleEnvio.findAll", query = "SELECT d FROM DetalleEnvio d"),
-    @NamedQuery(name = "DetalleEnvio.findByIdDetalleEnvio", query = "SELECT d FROM DetalleEnvio d WHERE d.idDetalleEnvio = :idDetalleEnvio"),
-    @NamedQuery(name = "DetalleEnvio.findByHoraEntrega", query = "SELECT d FROM DetalleEnvio d WHERE d.horaEntrega = :horaEntrega"),
-    @NamedQuery(name = "DetalleEnvio.findByObservaciones", query = "SELECT d FROM DetalleEnvio d WHERE d.observaciones = :observaciones")})
-public class DetalleEnvio implements Serializable {
+public class DetalleEnvio {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdDetalleEnvio")
     private Integer idDetalleEnvio;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_entrega")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaEntrega;
+
+    @Size(max = 500)
     @Column(name = "observaciones")
     private String observaciones;
+
     @JoinColumn(name = "IdEnvio", referencedColumnName = "IdEnvio")
     @ManyToOne(optional = false)
-    private Envio idEnvio;
+    private Envio envio;
+
     @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
-    private Estado idEstado;
+    private Estado estado;
+
     @JoinColumn(name = "IdPedido", referencedColumnName = "IdPedido")
     @ManyToOne(optional = false)
-    private Pedido idPedido;
+    private Pedido pedido;
 
     public DetalleEnvio() {
     }
@@ -94,28 +92,28 @@ public class DetalleEnvio implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Envio getIdEnvio() {
-        return idEnvio;
+    public Envio getEnvio() {
+        return envio;
     }
 
-    public void setIdEnvio(Envio idEnvio) {
-        this.idEnvio = idEnvio;
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
     }
 
-    public Estado getIdEstado() {
-        return idEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public Pedido getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(Pedido idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

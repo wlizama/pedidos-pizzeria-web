@@ -5,9 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,16 +14,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,42 +27,38 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "envio")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Envio.findAll", query = "SELECT e FROM Envio e"),
-    @NamedQuery(name = "Envio.findByIdEnvio", query = "SELECT e FROM Envio e WHERE e.idEnvio = :idEnvio"),
-    @NamedQuery(name = "Envio.findByHoraInicio", query = "SELECT e FROM Envio e WHERE e.horaInicio = :horaInicio"),
-    @NamedQuery(name = "Envio.findByHoraFin", query = "SELECT e FROM Envio e WHERE e.horaFin = :horaFin"),
-    @NamedQuery(name = "Envio.findByNumero", query = "SELECT e FROM Envio e WHERE e.numero = :numero")})
-public class Envio implements Serializable {
+public class Envio {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdEnvio")
     private Integer idEnvio;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_inicio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaInicio;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaFin;
+
     @Basic(optional = false)
+    @NotNull
     @Column(name = "numero")
     private int numero;
-    @JoinColumns({
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado"),
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")})
+
+    @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
     private Estado estado;
+
     @JoinColumn(name = "idRepartidor", referencedColumnName = "idRepartidor")
     @ManyToOne(optional = false)
-    private Repartidor idRepartidor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnvio")
-    private List<DetalleEnvio> detalleEnvioList;
+    private Repartidor repartidor;
 
     public Envio() {
     }
@@ -124,21 +114,12 @@ public class Envio implements Serializable {
         this.estado = estado;
     }
 
-    public Repartidor getIdRepartidor() {
-        return idRepartidor;
+    public Repartidor getRepartidor() {
+        return repartidor;
     }
 
-    public void setIdRepartidor(Repartidor idRepartidor) {
-        this.idRepartidor = idRepartidor;
-    }
-
-    @XmlTransient
-    public List<DetalleEnvio> getDetalleEnvioList() {
-        return detalleEnvioList;
-    }
-
-    public void setDetalleEnvioList(List<DetalleEnvio> detalleEnvioList) {
-        this.detalleEnvioList = detalleEnvioList;
+    public void setRepartidor(Repartidor repartidor) {
+        this.repartidor = repartidor;
     }
 
     @Override

@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -15,14 +14,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,48 +26,43 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "comprobante")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Comprobante.findAll", query = "SELECT c FROM Comprobante c"),
-    @NamedQuery(name = "Comprobante.findByIdComprobante", query = "SELECT c FROM Comprobante c WHERE c.idComprobante = :idComprobante"),
-    @NamedQuery(name = "Comprobante.findByNumero", query = "SELECT c FROM Comprobante c WHERE c.numero = :numero"),
-    @NamedQuery(name = "Comprobante.findByFechaEmision", query = "SELECT c FROM Comprobante c WHERE c.fechaEmision = :fechaEmision"),
-    @NamedQuery(name = "Comprobante.findBySubtotal", query = "SELECT c FROM Comprobante c WHERE c.subtotal = :subtotal"),
-    @NamedQuery(name = "Comprobante.findByTotal", query = "SELECT c FROM Comprobante c WHERE c.total = :total")})
-public class Comprobante implements Serializable {
+public class Comprobante {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdComprobante")
     private Integer idComprobante;
+    
     @Basic(optional = false)
+    @NotNull
     @Column(name = "numero")
     private int numero;
+    
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_emision")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
+    @NotNull
     @Column(name = "subtotal")
     private BigDecimal subtotal;
+    
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumns({
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado"),
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")})
+    
+    @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
     private Estado estado;
-    @JoinColumns({
-        @JoinColumn(name = "IdPedido", referencedColumnName = "IdPedido"),
-        @JoinColumn(name = "IdPedido", referencedColumnName = "IdPedido")})
+    
+    @JoinColumn(name = "IdPedido", referencedColumnName = "IdPedido")
     @ManyToOne(optional = false)
     private Pedido pedido;
-    @JoinColumns({
-        @JoinColumn(name = "IdTipoComprobante", referencedColumnName = "IdTipoComprobante"),
-        @JoinColumn(name = "IdTipoComprobante", referencedColumnName = "IdTipoComprobante")})
+    
+    @JoinColumn(name = "IdTipoComprobante", referencedColumnName = "IdTipoComprobante")
     @ManyToOne(optional = false)
     private Tipocomprobante tipocomprobante;
 
