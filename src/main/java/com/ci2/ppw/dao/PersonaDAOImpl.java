@@ -38,5 +38,17 @@ public class PersonaDAOImpl implements PersonaDAO {
     public List<Persona> getListaPersonaByDocumento() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    @Transactional
+    public Persona getPersonaById(int idPersona) {
+        Session  session  = sessionFactory.getCurrentSession();
+        Query<Persona> query = session.createQuery("from Persona p where p.idPersona=:idPersona", Persona.class);
+        query.setParameter("idPersona", idPersona);
+        
+        return query.getSingleResult();
+    }
+    
+    
     
 }

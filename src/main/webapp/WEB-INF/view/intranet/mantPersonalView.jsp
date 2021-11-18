@@ -68,22 +68,7 @@
                                         <th scope="col">Estado</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <c:forEach
-                                        items="${personas}"
-                                        var="persona"
-                                        >
-                                        <tr>
-                                            <td>
-                                                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mPersonal"><i class="fas fa-pen"></i></button>
-                                            </td>
-                                            <th>${persona.idPersona}</th>
-                                            <td>${persona.nombres}</td>
-                                            <td>${persona.telefono}</td>
-                                            <td>${persona.estado.nombre}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
+                                <tbody id="tbodyLstPersona"></tbody>
                             </table>
                         </div>
                     </div>
@@ -147,7 +132,7 @@
                                         items="${roles}"
                                         var="rol"
                                         >
-                                        <tr">
+                                        <tr>
                                             <td>
                                                 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
                                             </td>
@@ -178,7 +163,81 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <form>
+                                <div class="form-group row">
+                                    <label for="txtPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtPersonaNombres" maxlength="150" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtPersonaApellidos" class="col-sm-4 col-form-label">Apellidos</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtPersonaApellidos" maxlength="150" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtPersonaTelefono" class="col-sm-4 col-form-label">Teléfono</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtPersonaTelefono" maxlength="150" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtPersonaCelular" class="col-sm-4 col-form-label">Celular</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtPersonaCelular" maxlength="15" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cboPersonaTipoDocumento" class="col-sm-4 col-form-label">Tipo de documento</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboPersonaTipoDocumento" class="custom-select">
+                                            <option selected>( Todos )</option>
+                                            <c:forEach
+                                                items="${tdocs}"
+                                                var="tdo"
+                                                >
+                                                <option value="${tdo.idTipoDocIdentidad}">${tdo.nombre}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtPersonaDocumento" class="col-sm-4 col-form-label">Nro. documento</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtPersonaDocumento" maxlength="15" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cboPersonaTipoPersona" class="col-sm-4 col-form-label">Tipo Persona</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboPersonaTipoPersona" class="custom-select">
+                                            <c:forEach
+                                                items="${tpers}"
+                                                var="tper"
+                                                >
+                                                <option value="${tper.idTipoPersona}">${tper.nombre}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="cboPersonaEstado" class="col-sm-4 col-form-label">Estado</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboPersonaEstado" class="custom-select">
+                                            <c:forEach
+                                                items="${epers}"
+                                                var="eper"
+                                                >
+                                                <option value="${eper.idEstado}">${eper.nombre}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>

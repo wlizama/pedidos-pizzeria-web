@@ -70,7 +70,8 @@ values
 (0, 'Usuario'),
 (0, 'Comprobante'),
 (0, 'Producto'),
-(0, 'Pizza');
+(0, 'Pizza'),
+(0, 'Persona');
 select * from tipoestado;
 
 insert into estado( IdEstado, nombre, IdTipoEstado )
@@ -104,7 +105,10 @@ values
 # Pizza
 (0, 'Anulado', 11),
 (0, 'Disponible', 11),
-(0, 'No Disponible', 11);
+(0, 'No Disponible', 11),
+# Persona
+(0, 'Activo', 12),
+(0, 'Inactivo', 12);
 select * from estado;
 
 -- super usuario de sistema

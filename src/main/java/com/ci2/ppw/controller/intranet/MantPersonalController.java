@@ -5,17 +5,23 @@
  */
 package com.ci2.ppw.controller.intranet;
 
+import com.ci2.ppw.dao.EstadoDAO;
 import com.ci2.ppw.dao.PersonaDAO;
 import com.ci2.ppw.dao.RolesDAO;
 import com.ci2.ppw.dao.TipoDocumentoIdentidadDAO;
+import com.ci2.ppw.dao.TipoPersonaDAO;
+import com.ci2.ppw.model.Estado;
 import com.ci2.ppw.model.Persona;
 import com.ci2.ppw.model.Roles;
 import com.ci2.ppw.model.TipoDocumentoIdentidad;
+import com.ci2.ppw.model.TipoPersona;
+import com.ci2.ppw.utils.Constants;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,18 +41,26 @@ public class MantPersonalController {
     private PersonaDAO personaDAO;
     
     @Autowired
+    private TipoPersonaDAO tipoPersonaDAO;
+    
+    @Autowired
     private TipoDocumentoIdentidadDAO tdocDAO;
+    
+    @Autowired
+    private EstadoDAO estadoDAO;
     
     @RequestMapping("/mant-personal")
     public String getDatos(Model model) {
         
         List<Roles> roles = rolesDAO.getListaRoles();
         List<TipoDocumentoIdentidad> tdocs = tdocDAO.getListaTipoDocumentoIdentidad();
-        List<Persona> personas = personaDAO.getListaPersona();
+        List<TipoPersona> tpers = tipoPersonaDAO.getListaTipoPersona();
+        List<Estado> epers = estadoDAO.getListaEstadoByTipo(Constants.TEPERSONA);
 
         model.addAttribute("tdocs", tdocs);
         model.addAttribute("roles", roles);
-        model.addAttribute("personas", personas);
+        model.addAttribute("tpers", tpers);
+        model.addAttribute("epers", epers);
         
         return "intranet/mantPersonalView";
     }
@@ -56,6 +70,13 @@ public class MantPersonalController {
         
         List<Persona> lstResult = personaDAO.getListaPersona();
         return lstResult;
+    }
+    
+    @RequestMapping(value = "/mant-personal/persona/{idPersona}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Persona getPersona(@PathVariable int idPersona) {
+        
+        Persona result = personaDAO.getPersonaById(idPersona);
+        return result;
     }
     
 }

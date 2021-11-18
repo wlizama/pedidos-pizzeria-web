@@ -25,10 +25,11 @@ public class Constants {
     public static final int TEPEDIDO = 5;
     public static final int TENVIO = 6;
     public static final int TENVIO_DETALLE = 7;
-    public static final int TUSUARIO = 8;
-    public static final int TCOMPROBANTE = 9;
-    public static final int TPRODUCTO = 10;
-    public static final int TPIZZA = 11;
+    public static final int TEUSUARIO = 8;
+    public static final int TECOMPROBANTE = 9;
+    public static final int TEPRODUCTO = 10;
+    public static final int TEPIZZA = 11;
+    public static final int TEPERSONA = 12;
     
     // Estado
     public static final int EPEDIDO_REGISTRADO = 13;

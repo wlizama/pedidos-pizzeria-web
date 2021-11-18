@@ -5,17 +5,13 @@
  */
 package com.ci2.ppw.dao;
 
-import com.ci2.ppw.model.Persona;
+import com.ci2.ppw.model.TipoPersona;
 import java.util.List;
 
 /**
  *
  * @author wilderlizama
  */
-public interface PersonaDAO {
-    
-    public List<Persona> getListaPersona();
-    public List<Persona> getListaPersonaByDocumento();
-    
-    public Persona getPersonaById(int idPersona);
+public interface TipoPersonaDAO {
+    public List<TipoPersona> getListaTipoPersona();
 }
