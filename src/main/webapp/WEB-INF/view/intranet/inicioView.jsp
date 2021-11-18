@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session="true"%>
+<%@page session="true"%>           
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/intranet" %>
-
 <t:mainLayout pageTitle="Pizzeria - Admin">
     <jsp:body>
         <div class="w-100 text-center py-4">
