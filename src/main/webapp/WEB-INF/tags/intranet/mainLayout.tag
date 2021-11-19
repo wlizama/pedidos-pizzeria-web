@@ -163,7 +163,6 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <div id="error" class="text-danger"></div>
                         <jsp:doBody />
                     </div>
                     <!-- /.container-fluid -->
@@ -207,6 +206,40 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                         <a class="btn btn-primary" href="<c:url value="/intranet/logout" />">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        <!-- Error detail Modal -->
+        <div class="modal fade" id="mError" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mErrorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mErrorLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast confirm -->
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+            <div id="toastConfirm" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-body">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto text-success"></div>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
             </div>

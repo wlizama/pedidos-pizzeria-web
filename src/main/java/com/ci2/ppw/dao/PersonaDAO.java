@@ -16,6 +16,7 @@ public interface PersonaDAO {
     
     public List<Persona> getListaPersona();
     public List<Persona> getListaPersonaByDocumento();
-    
     public Persona getPersonaById(int idPersona);
+    public void insertarPersona(Persona persona);
+    public void modificarPersona(Persona persona);
 }

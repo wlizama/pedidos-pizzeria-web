@@ -48,7 +48,19 @@ public class PersonaDAOImpl implements PersonaDAO {
         
         return query.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void insertarPersona(Persona prsn) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.save(prsn);
+    }
     
-    
+    @Override
+    @Transactional
+    public void modificarPersona(Persona prsn) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.update(prsn);
+    }
     
 }

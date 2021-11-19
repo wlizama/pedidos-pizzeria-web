@@ -28,7 +28,7 @@
                                 <h4>Lista de Personal</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mPersonal">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mPersonal" data-op="new">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -163,7 +163,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="frmPersonal" >
+                                <input type="hidden" id="txtPersonaId" />
+                                <input type="hidden" id="txtPersonaOp" />
                                 <div class="form-group row">
                                     <label for="txtPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
                                     <div class="col-sm-8">
@@ -234,14 +236,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                
-                                
-                                
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnPersonaGuardar" >Guardar</button>
                         </div>
                     </div>
                 </div>

@@ -61,7 +61,7 @@ values
 (0, 'PART. DE NACIMIENTO-IDENTIDAD', 15),
 (0, 'OTROS', 15);
 select * from tipoDocumentoIdentidad;
-
+#update tipoDocumentoIdentidad set nombre = 'PART. DE NACIMIENTO-IDENTIDAD', cantidad_caracteres = 15 where IdTipoDocIdentidad = 11
 insert into tipoestado( IdTipoEstado, nombre )
 values
 (0, 'Pedido'),
@@ -118,6 +118,7 @@ select * from documentoIdentidad;
 insert into persona ( IdPersona, nombres, apellidos, telefono, celular,  IdTipoPersona, IdDocumentoIdentidad, IdEstado )
 value(0, 'Super Usuario de Sistema', null, null, null, 13, 30, 26);
 select * from persona;
+update persona set IdEstado = 36 where IdPersona = 29;
 insert into usuario ( IdUsuario, nombre_usuario, contrasenha, IdPersona, IdRol )
 value( 0, 'suuser' , 123456, 29, 5 ); #SHA1('123456')
 select * from usuario;
