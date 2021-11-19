@@ -5,10 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,26 +22,21 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "repartidor")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Repartidor.findAll", query = "SELECT r FROM Repartidor r"),
-    @NamedQuery(name = "Repartidor.findByIdRepartidor", query = "SELECT r FROM Repartidor r WHERE r.idRepartidor = :idRepartidor"),
-    @NamedQuery(name = "Repartidor.findByPlacaUnidad", query = "SELECT r FROM Repartidor r WHERE r.placaUnidad = :placaUnidad")})
-public class Repartidor implements Serializable {
+public class Repartidor {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idRepartidor")
     private Integer idRepartidor;
+
+    @Size(max = 10)
     @Column(name = "placa_unidad")
     private String placaUnidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRepartidor")
-    private List<Envio> envioList;
+
     @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
-    private Persona idPersona;
+    private Persona persona;
 
     public Repartidor() {
     }
@@ -73,21 +61,12 @@ public class Repartidor implements Serializable {
         this.placaUnidad = placaUnidad;
     }
 
-    @XmlTransient
-    public List<Envio> getEnvioList() {
-        return envioList;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setEnvioList(List<Envio> envioList) {
-        this.envioList = envioList;
-    }
-
-    public Persona getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @Override
