@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,34 +23,31 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Usuario.findByContrasenha", query = "SELECT u FROM Usuario u WHERE u.contrasenha = :contrasenha")})
-public class Usuario implements Serializable {
+public class Usuario {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdUsuario")
     private Integer idUsuario;
+    
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
+    
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "contrasenha")
     private String contrasenha;
-    @JoinColumns({
-        @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona"),
-        @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")})
+    
+    @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
     private Persona persona;
-    @JoinColumns({
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol"),
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")})
+    
+    @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")
     @ManyToOne(optional = false)
     private Roles roles;
 

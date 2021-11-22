@@ -3,6 +3,7 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="pageTitle" required="true"%>
+<%@attribute name="pageScripts" fragment="true" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,9 @@
         <title>${pageTitle}</title>
     </head>
     <body>
-
+        <div id="loading">
+            <img id="loading-image" src="<c:url value="/resources/intranet/img/pizza-loading.gif" />" alt="Loading..." />
+        </div>
         <!-- Page Wrapper -->
         <div id="wrapper">
 
@@ -133,7 +136,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">${pageContext.request.userPrincipal.name}</span>
                                     <img class="img-profile rounded-circle"
                                          src="<c:url value="/resources/intranet/img/undraw_profile.svg" />">
                                 </a>
@@ -142,7 +145,7 @@
                                      aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                        Perfil
                                     </a>
                                     
                                     <div class="dropdown-divider"></div>
@@ -194,37 +197,60 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">¿Esta seguro que desea cerrar sesión?</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="<c:url value="/intranet/logout" />">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
+                    
+        <!-- Error detail Modal -->
+        <div class="modal fade" id="mError" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mErrorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mErrorLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast confirm -->
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+            <div id="toastConfirm" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+                <div class="toast-body">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto text-success"></div>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Bootstrap core JavaScript-->
         <script src="<c:url value="/resources/intranet/js/jquery.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/bootstrap.bundle.min.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/sb-admin-2.min.js" />"></script>
-            <% 
-                HttpSession sesion = request.getSession();
-                int nivel = 0;
-                if(request.getAttribute("nivel")!=null){
-                    nivel = (Integer)request.getAttribute("nivel");
-                    if (nivel==1){
-                        sesion.setAttribute("nombre", request.getAttribute("nombre"));
-                        sesion.setAttribute("nivel", nivel);
-                        response.sendRedirect("./intranet");
-                    }
-                    else{
-                        response.sendRedirect("./login");
-                    }
-                }
-            %>
+        <script src="<c:url value="/resources/intranet/js/common.js" />"></script>
+        
+        <jsp:invoke fragment="pageScripts" />
     </body>
 </html>
