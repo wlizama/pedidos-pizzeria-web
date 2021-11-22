@@ -66,7 +66,7 @@ public class MantPersonalController {
         List<Roles> roles = rolesDAO.getListaRoles();
         List<TipoDocumentoIdentidad> tdocs = tdocDAO.getListaTipoDocumentoIdentidad();
         List<TipoPersona> tpers = tipoPersonaDAO.getListaTipoPersona();
-        List<Estado> epers = estadoDAO.getListaEstadoByTipo(Constants.TEPERSONA);
+        List<Estado> epers = estadoDAO.getListaEstadoByTipo(Constants.TEPERSONA);        
 
         model.addAttribute("tdocs", tdocs);
         model.addAttribute("roles", roles);
@@ -77,9 +77,12 @@ public class MantPersonalController {
     }
     
     @RequestMapping(value = "/mant-personal/list-personal", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<Persona> getListaPersona() {
+    public @ResponseBody List<Persona> getListaPersona(@RequestParam Map<String, String> params) {
         
-        List<Persona> lstResult = personaDAO.getListaPersona();
+        int idTipoDocIdentidad = Integer.parseInt(params.get("idTipoDocIdentidad"));
+        String numero = params.get("numero").trim();
+        
+        List<Persona> lstResult = personaDAO.getListaPersona(idTipoDocIdentidad, numero);
         return lstResult;
     }
      

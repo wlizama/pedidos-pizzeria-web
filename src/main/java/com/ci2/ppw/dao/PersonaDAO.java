@@ -14,8 +14,7 @@ import java.util.List;
  */
 public interface PersonaDAO {
     
-    public List<Persona> getListaPersona();
-    public List<Persona> getListaPersonaByDocumento();
+    public List<Persona> getListaPersona(int idTipoDocIdentidad, String numero);
     public Persona getPersonaById(int idPersona);
     public void insertarPersona(Persona persona);
     public void modificarPersona(Persona persona);

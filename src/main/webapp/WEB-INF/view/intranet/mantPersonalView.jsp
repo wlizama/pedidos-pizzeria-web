@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col">
                                     <select id="cboPLTipoDocumento" class="custom-select mr-2">
-                                        <option selected>( Todos )</option>
+                                        <option value="0" selected>( Todos )</option>
                                         <c:forEach
                                             items="${tdocs}"
                                             var="tdo"
