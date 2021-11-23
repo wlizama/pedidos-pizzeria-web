@@ -53,6 +53,12 @@ public class DocumentoIdentidad {
         this.numero = numero;
     }
 
+    public DocumentoIdentidad(Integer idDocumentoIdentidad, String numero, TipoDocumentoIdentidad tipoDocumentoIdentidad) {
+        this.idDocumentoIdentidad = idDocumentoIdentidad;
+        this.numero = numero;
+        this.tipoDocumentoIdentidad = tipoDocumentoIdentidad;
+    }
+
     public Integer getIdDocumentoIdentidad() {
         return idDocumentoIdentidad;
     }

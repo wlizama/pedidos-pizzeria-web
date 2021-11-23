@@ -42,6 +42,12 @@ public class TipoDocumentoIdentidad {
         this.idTipoDocIdentidad = idTipoDocIdentidad;
     }
 
+    public TipoDocumentoIdentidad(Integer idTipoDocIdentidad, String nombre, Integer cantidadCaracteres) {
+        this.idTipoDocIdentidad = idTipoDocIdentidad;
+        this.nombre = nombre;
+        this.cantidadCaracteres = cantidadCaracteres;
+    }
+
     public Integer getIdTipoDocIdentidad() {
         return idTipoDocIdentidad;
     }

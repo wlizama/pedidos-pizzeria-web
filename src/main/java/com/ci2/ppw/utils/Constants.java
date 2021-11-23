@@ -11,6 +11,13 @@ package com.ci2.ppw.utils;
  */
 public class Constants {
     
+    public static final int IDPERSONA_SUUSER = 29;
+    
+    public static final int MIN_INT_FILTER = 0;
+    public static final int MAX_INT_FILTER = 9999999;
+    public static final String MIN_STRING_FILTER = "";
+    public static final String MAX_STRING_FILTER = "ZZZZZZZZZZZZZZZ";
+    
     // Menus
     public static final int MPEDIDOS = 6;
     public static final int MDELIVERY = 7;

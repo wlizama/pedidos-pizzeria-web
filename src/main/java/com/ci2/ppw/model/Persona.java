@@ -6,6 +6,7 @@
 package com.ci2.ppw.model;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class Persona {
     private String celular;
     
     @JoinColumn(name = "IdDocumentoIdentidad", referencedColumnName = "IdDocumentoIdentidad")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private DocumentoIdentidad documentoIdentidad;
     
     @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
@@ -63,6 +64,17 @@ public class Persona {
 
     public Persona(Integer idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public Persona(Integer idPersona, String nombres, String apellidos, String telefono, String celular, DocumentoIdentidad documentoIdentidad, Estado estado, TipoPersona tipoPersona) {
+        this.idPersona = idPersona;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.celular = celular;
+        this.documentoIdentidad = documentoIdentidad;
+        this.estado = estado;
+        this.tipoPersona = tipoPersona;
     }
 
     public Integer getIdPersona() {
