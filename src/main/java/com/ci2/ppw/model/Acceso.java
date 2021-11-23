@@ -5,7 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -26,28 +22,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "acceso")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Acceso.findAll", query = "SELECT a FROM Acceso a"),
-    @NamedQuery(name = "Acceso.findByIdAcceso", query = "SELECT a FROM Acceso a WHERE a.idAcceso = :idAcceso"),
-    @NamedQuery(name = "Acceso.findByAcceso", query = "SELECT a FROM Acceso a WHERE a.acceso = :acceso")})
-public class Acceso implements Serializable {
+public class Acceso {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdAcceso")
     private Integer idAcceso;
+    
     @Basic(optional = false)
+    @NotNull
     @Column(name = "acceso")
     private short acceso;
+    
     @JoinColumn(name = "IdFormulario", referencedColumnName = "IdFormulario")
     @ManyToOne(optional = false)
-    private Formulario idFormulario;
-    @JoinColumns({
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol"),
-        @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")})
+    private Formulario formulario;
+    
+    @JoinColumn(name = "IdRol", referencedColumnName = "IdRol")
     @ManyToOne(optional = false)
     private Roles roles;
 
@@ -79,12 +71,12 @@ public class Acceso implements Serializable {
         this.acceso = acceso;
     }
 
-    public Formulario getIdFormulario() {
-        return idFormulario;
+    public Formulario getFormulario() {
+        return formulario;
     }
 
-    public void setIdFormulario(Formulario idFormulario) {
-        this.idFormulario = idFormulario;
+    public void setFormulario(Formulario formulario) {
+        this.formulario = formulario;
     }
 
     public Roles getRoles() {

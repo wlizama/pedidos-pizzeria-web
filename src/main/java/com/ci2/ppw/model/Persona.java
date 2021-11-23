@@ -5,8 +5,6 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,14 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,57 +23,58 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "persona")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
-    @NamedQuery(name = "Persona.findByNombres", query = "SELECT p FROM Persona p WHERE p.nombres = :nombres"),
-    @NamedQuery(name = "Persona.findByApellidos", query = "SELECT p FROM Persona p WHERE p.apellidos = :apellidos"),
-    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Persona.findByCelular", query = "SELECT p FROM Persona p WHERE p.celular = :celular")})
-public class Persona implements Serializable {
+public class Persona {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdPersona")
     private Integer idPersona;
+    
+    @Size(max = 150)
     @Column(name = "nombres")
     private String nombres;
+    
+    @Size(max = 150)
     @Column(name = "apellidos")
     private String apellidos;
+    
+    @Size(max = 10)
     @Column(name = "telefono")
     private String telefono;
+    
+    @Size(max = 15)
     @Column(name = "celular")
     private String celular;
-    @JoinColumns({
-        @JoinColumn(name = "IdDocumentoIdentidad", referencedColumnName = "IdDocumentoIdentidad"),
-        @JoinColumn(name = "IdDocumentoIdentidad", referencedColumnName = "IdDocumentoIdentidad")})
-    @ManyToOne(optional = false)
+    
+    @JoinColumn(name = "IdDocumentoIdentidad", referencedColumnName = "IdDocumentoIdentidad")
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private DocumentoIdentidad documentoIdentidad;
-    @JoinColumns({
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado"),
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")})
+    
+    @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
     private Estado estado;
-    @JoinColumns({
-        @JoinColumn(name = "IdTipoPersona", referencedColumnName = "IdTipoPersona"),
-        @JoinColumn(name = "IdTipoPersona", referencedColumnName = "IdTipoPersona")})
+    
+    @JoinColumn(name = "IdTipoPersona", referencedColumnName = "IdTipoPersona")
     @ManyToOne(optional = false)
     private TipoPersona tipoPersona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Cliente> clienteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private List<Repartidor> repartidorList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Usuario> usuarioList;
 
     public Persona() {
     }
 
     public Persona(Integer idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public Persona(Integer idPersona, String nombres, String apellidos, String telefono, String celular, DocumentoIdentidad documentoIdentidad, Estado estado, TipoPersona tipoPersona) {
+        this.idPersona = idPersona;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.celular = celular;
+        this.documentoIdentidad = documentoIdentidad;
+        this.estado = estado;
+        this.tipoPersona = tipoPersona;
     }
 
     public Integer getIdPersona() {
@@ -145,33 +139,6 @@ public class Persona implements Serializable {
 
     public void setTipoPersona(TipoPersona tipoPersona) {
         this.tipoPersona = tipoPersona;
-    }
-
-    @XmlTransient
-    public List<Cliente> getClienteList() {
-        return clienteList;
-    }
-
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
-    }
-
-    @XmlTransient
-    public List<Repartidor> getRepartidorList() {
-        return repartidorList;
-    }
-
-    public void setRepartidorList(List<Repartidor> repartidorList) {
-        this.repartidorList = repartidorList;
-    }
-
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
     }
 
     @Override

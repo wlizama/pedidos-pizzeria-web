@@ -5,11 +5,8 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,42 +23,39 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "direccionCliente")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "DireccionCliente.findAll", query = "SELECT d FROM DireccionCliente d"),
-    @NamedQuery(name = "DireccionCliente.findByIddireccionCliente", query = "SELECT d FROM DireccionCliente d WHERE d.iddireccionCliente = :iddireccionCliente"),
-    @NamedQuery(name = "DireccionCliente.findByDireccion", query = "SELECT d FROM DireccionCliente d WHERE d.direccion = :direccion"),
-    @NamedQuery(name = "DireccionCliente.findByReferencia", query = "SELECT d FROM DireccionCliente d WHERE d.referencia = :referencia"),
-    @NamedQuery(name = "DireccionCliente.findByLatitud", query = "SELECT d FROM DireccionCliente d WHERE d.latitud = :latitud"),
-    @NamedQuery(name = "DireccionCliente.findByLongitud", query = "SELECT d FROM DireccionCliente d WHERE d.longitud = :longitud"),
-    @NamedQuery(name = "DireccionCliente.findByPrincipal", query = "SELECT d FROM DireccionCliente d WHERE d.principal = :principal")})
-public class DireccionCliente implements Serializable {
+public class DireccionCliente {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "iddireccionCliente")
     private Integer iddireccionCliente;
+
+    @Size(max = 250)
     @Column(name = "direccion")
     private String direccion;
+
+    @Size(max = 250)
     @Column(name = "referencia")
     private String referencia;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "latitud")
     private BigDecimal latitud;
+
     @Column(name = "longitud")
     private BigDecimal longitud;
+
     @Column(name = "principal")
     private Short principal;
+
     @JoinColumn(name = "idCliente", referencedColumnName = "IdCliente")
     @ManyToOne(optional = false)
-    private Cliente idCliente;
+    private Cliente cliente;
+
     @JoinColumn(name = "idDistrito", referencedColumnName = "IdDistrito")
     @ManyToOne(optional = false)
-    private Distrito idDistrito;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDireccionEnvio")
-    private List<Pedido> pedidoList;
+    private Distrito distrito;
 
     public DireccionCliente() {
     }
@@ -122,29 +112,20 @@ public class DireccionCliente implements Serializable {
         this.principal = principal;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Distrito getIdDistrito() {
-        return idDistrito;
+    public Distrito getDistrito() {
+        return distrito;
     }
 
-    public void setIdDistrito(Distrito idDistrito) {
-        this.idDistrito = idDistrito;
-    }
-
-    @XmlTransient
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
     }
 
     @Override

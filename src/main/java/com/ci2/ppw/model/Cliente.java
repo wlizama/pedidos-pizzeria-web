@@ -5,24 +5,16 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,31 +22,23 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "cliente")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
-    @NamedQuery(name = "Cliente.findByNombreUsuario", query = "SELECT c FROM Cliente c WHERE c.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Cliente.findByContrasenha", query = "SELECT c FROM Cliente c WHERE c.contrasenha = :contrasenha")})
-public class Cliente implements Serializable {
+public class Cliente {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdCliente")
     private Integer idCliente;
+
+    @Size(max = 50)
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
+
+    @Size(max = 50)
     @Column(name = "contrasenha")
     private String contrasenha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
-    private List<DireccionCliente> direccionClienteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Pedido> pedidoList;
-    @JoinColumns({
-        @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona"),
-        @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")})
+
+    @JoinColumn(name = "IdPersona", referencedColumnName = "IdPersona")
     @ManyToOne(optional = false)
     private Persona persona;
 
@@ -87,24 +71,6 @@ public class Cliente implements Serializable {
 
     public void setContrasenha(String contrasenha) {
         this.contrasenha = contrasenha;
-    }
-
-    @XmlTransient
-    public List<DireccionCliente> getDireccionClienteList() {
-        return direccionClienteList;
-    }
-
-    public void setDireccionClienteList(List<DireccionCliente> direccionClienteList) {
-        this.direccionClienteList = direccionClienteList;
-    }
-
-    @XmlTransient
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
     }
 
     public Persona getPersona() {

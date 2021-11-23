@@ -5,7 +5,7 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,34 +22,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "pizza")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Pizza.findAll", query = "SELECT p FROM Pizza p"),
-    @NamedQuery(name = "Pizza.findByIdPizza", query = "SELECT p FROM Pizza p WHERE p.idPizza = :idPizza")})
-public class Pizza implements Serializable {
+public class Pizza {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdPizza")
     private Integer idPizza;
-    @JoinColumns({
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado"),
-        @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")})
+    
+    @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     @ManyToOne(optional = false)
     private Estado estado;
+    
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false)
-    private Producto idProducto;
-    @JoinColumns({
-        @JoinColumn(name = "IdTamanho", referencedColumnName = "IdTamanho"),
-        @JoinColumn(name = "IdTamanho", referencedColumnName = "IdTamanho")})
+    private Producto producto;
+    
+    @JoinColumn(name = "IdTamanho", referencedColumnName = "IdTamanho")
     @ManyToOne(optional = false)
     private Tamanho tamanho;
-    @JoinColumns({
-        @JoinColumn(name = "IdTipoPizza", referencedColumnName = "IdTipoPizza"),
-        @JoinColumn(name = "IdTipoPizza", referencedColumnName = "IdTipoPizza")})
+    
+    @JoinColumn(name = "IdTipoPizza", referencedColumnName = "IdTipoPizza")
     @ManyToOne(optional = false)
     private Tipopizza tipopizza;
 
@@ -80,12 +69,12 @@ public class Pizza implements Serializable {
         this.estado = estado;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Tamanho getTamanho() {

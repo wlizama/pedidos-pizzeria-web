@@ -5,24 +5,17 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,29 +23,23 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "documentoIdentidad")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "DocumentoIdentidad.findAll", query = "SELECT d FROM DocumentoIdentidad d"),
-    @NamedQuery(name = "DocumentoIdentidad.findByIdDocumentoIdentidad", query = "SELECT d FROM DocumentoIdentidad d WHERE d.idDocumentoIdentidad = :idDocumentoIdentidad"),
-    @NamedQuery(name = "DocumentoIdentidad.findByNumero", query = "SELECT d FROM DocumentoIdentidad d WHERE d.numero = :numero")})
-public class DocumentoIdentidad implements Serializable {
+public class DocumentoIdentidad {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdDocumentoIdentidad")
     private Integer idDocumentoIdentidad;
+
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "numero")
     private String numero;
-    @JoinColumns({
-        @JoinColumn(name = "IdTipoDocIdentidad", referencedColumnName = "IdTipoDocIdentidad"),
-        @JoinColumn(name = "IdTipoDocIdentidad", referencedColumnName = "IdTipoDocIdentidad")})
+
+    @JoinColumn(name = "IdTipoDocIdentidad", referencedColumnName = "IdTipoDocIdentidad")
     @ManyToOne(optional = false)
     private TipoDocumentoIdentidad tipoDocumentoIdentidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentoIdentidad")
-    private List<Persona> personaList;
 
     public DocumentoIdentidad() {
     }
@@ -64,6 +51,12 @@ public class DocumentoIdentidad implements Serializable {
     public DocumentoIdentidad(Integer idDocumentoIdentidad, String numero) {
         this.idDocumentoIdentidad = idDocumentoIdentidad;
         this.numero = numero;
+    }
+
+    public DocumentoIdentidad(Integer idDocumentoIdentidad, String numero, TipoDocumentoIdentidad tipoDocumentoIdentidad) {
+        this.idDocumentoIdentidad = idDocumentoIdentidad;
+        this.numero = numero;
+        this.tipoDocumentoIdentidad = tipoDocumentoIdentidad;
     }
 
     public Integer getIdDocumentoIdentidad() {
@@ -88,15 +81,6 @@ public class DocumentoIdentidad implements Serializable {
 
     public void setTipoDocumentoIdentidad(TipoDocumentoIdentidad tipoDocumentoIdentidad) {
         this.tipoDocumentoIdentidad = tipoDocumentoIdentidad;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @Override

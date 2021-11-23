@@ -17,8 +17,10 @@ public class AppInitializer implements WebApplicationInitializer {
     
     @Override
     public void onStartup( ServletContext servletContext  ) throws ServletException {
+        //servletContext.setSessionTimeout(60);
         AnnotationConfigWebApplicationContext webCtx = new AnnotationConfigWebApplicationContext();
         webCtx.register(WebMvcConfig.class);
+        
         webCtx.setServletContext(servletContext);
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(webCtx));
         servlet.setLoadOnStartup(1);

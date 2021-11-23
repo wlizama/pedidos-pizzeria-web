@@ -5,21 +5,15 @@
  */
 package com.ci2.ppw.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,27 +21,23 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "tipopizza")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Tipopizza.findAll", query = "SELECT t FROM Tipopizza t"),
-    @NamedQuery(name = "Tipopizza.findByIdTipoPizza", query = "SELECT t FROM Tipopizza t WHERE t.idTipoPizza = :idTipoPizza"),
-    @NamedQuery(name = "Tipopizza.findByNombre", query = "SELECT t FROM Tipopizza t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "Tipopizza.findByDescripcion", query = "SELECT t FROM Tipopizza t WHERE t.descripcion = :descripcion")})
-public class Tipopizza implements Serializable {
+public class Tipopizza {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IdTipoPizza")
     private Integer idTipoPizza;
+
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "nombre")
     private String nombre;
+
+    @Size(max = 500)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipopizza")
-    private List<Pizza> pizzaList;
 
     public Tipopizza() {
     }
@@ -83,15 +73,6 @@ public class Tipopizza implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    @XmlTransient
-    public List<Pizza> getPizzaList() {
-        return pizzaList;
-    }
-
-    public void setPizzaList(List<Pizza> pizzaList) {
-        this.pizzaList = pizzaList;
     }
 
     @Override
