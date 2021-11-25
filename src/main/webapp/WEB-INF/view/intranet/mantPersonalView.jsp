@@ -5,6 +5,7 @@
 <t:mainLayout pageTitle="Pizzeria - Mantenimiento Personal">
     <jsp:attribute name="pageScripts">
         <script src="<c:url value="/resources/intranet/js/mantPersonalPersona.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/mantPersonalTipoPersona.js" />"></script>
     </jsp:attribute>
     <jsp:body>
         <t:mainWrapper contentTitle="Mantenimiento">
@@ -80,7 +81,7 @@
                                 <h4>Tipo de Personal</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipoPersonal">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipoPersonal" data-op="new">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -93,15 +94,7 @@
                                         <th scope="col">Nombre</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mTipoPersonal"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>rr</td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="tbodyLstTipoPersona"></tbody>
                             </table>
                         </div>
                     </div>
@@ -114,7 +107,7 @@
                                 <h4>Roles</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mRoles">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mRoles" data-op="new">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -257,11 +250,20 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <form id="frmTipoPersonal" >
+                                <input type="hidden" id="txtTipoPersonaId" />
+                                <input type="hidden" id="txtTipoPersonaOp" />
+                                <div class="form-group row">
+                                    <label for="txtTipoPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
+                                    <div class="col-sm-8">
+                                        <input type="txt" class="form-control" id="txtTipoPersonaNombres" maxlength="50" />
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnTipoPersonaGuardar" >Guardar</button>
                         </div>
                     </div>
                 </div>
