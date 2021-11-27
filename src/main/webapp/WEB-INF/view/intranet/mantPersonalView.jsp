@@ -6,6 +6,7 @@
     <jsp:attribute name="pageScripts">
         <script src="<c:url value="/resources/intranet/js/mantPersonalPersona.js" />"></script>
         <script src="<c:url value="/resources/intranet/js/mantPersonalTipoPersona.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/mantPersonalRoles.js" />"></script>
     </jsp:attribute>
     <jsp:body>
         <t:mainWrapper contentTitle="Mantenimiento">
@@ -120,20 +121,7 @@
                                         <th scope="col">Nombre</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <c:forEach
-                                        items="${roles}"
-                                        var="rol"
-                                        >
-                                        <tr>
-                                            <td>
-                                                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
-                                            </td>
-                                            <th>${rol.idRol}</th>
-                                            <td>${rol.nombre}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
+                                <tbody id="tbodyLstRol"></tbody>
                             </table>
                         </div>
                     </div>
@@ -281,11 +269,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <form>
+                                <form id="frmRol">
+                                    <input type="hidden" id="txtRolId" />
+                                    <input type="hidden" id="txtRolOp" />
                                     <div class="form-group row">
                                         <label for="txtRol" class="col-sm-2 col-form-label">Nombre</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="txtRol">
+                                            <input type="text" class="form-control" id="txtRolNombres">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -301,7 +291,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnRolGuardar">Guardar</button>
                         </div>
                     </div>
                 </div>
