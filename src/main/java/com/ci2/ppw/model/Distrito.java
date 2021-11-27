@@ -53,6 +53,10 @@ public class Distrito {
         this.cobertura = cobertura;
     }
 
+    public Distrito(int parseInt, String get, String get0, Estado estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getIdDistrito() {
         return idDistrito;
     }
