@@ -33,5 +33,29 @@ public class TipoPersonaDAOImpl implements TipoPersonaDAO {
         
         return lstResult;
     }
+
+    @Override
+    @Transactional
+    public TipoPersona getTipoPersonaById(int idTipoPersona) {
+        Session  session  = sessionFactory.getCurrentSession();
+        Query<TipoPersona> query = session.createQuery("from TipoPersona tp where tp.idTipoPersona=:idTipoPersona", TipoPersona.class);
+        query.setParameter("idTipoPersona", idTipoPersona);
+        
+        return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void insertarTipoPersona(TipoPersona tipopersona) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.save(tipopersona);
+    }
+
+    @Override
+    @Transactional
+    public void modificarTipoPersona(TipoPersona tipopersona) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.update(tipopersona);
+    }
     
 }

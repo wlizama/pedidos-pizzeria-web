@@ -81,7 +81,8 @@
                     <div id="mnmantenimiento" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="<c:url value="/intranet/mant-clientes" />">Clientes</a>
-                            <a class="collapse-item" href="<c:url value="/intranet/mant-productos" />">Productos</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-producto" />">Productos</a>
+                            <a class="collapse-item" href="<c:url value="/intranet/mant-pizza" />">Pizzas</a>
                             <a class="collapse-item" href="<c:url value="/intranet/mant-personal" />">Personal</a>
                             <a class="collapse-item" href="<c:url value="/intranet/mant-cobertura" />">Cobertura</a>
                         </div>
