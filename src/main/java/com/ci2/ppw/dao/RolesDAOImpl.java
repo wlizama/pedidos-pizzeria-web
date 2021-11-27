@@ -29,5 +29,29 @@ public class RolesDAOImpl implements RolesDAO {
         
         return lstResult;
     }
+
+    @Override
+    @Transactional
+    public Roles getRolById(int idRol) {
+        Session  session  = sessionFactory.getCurrentSession();
+        Query<Roles> query = session.createQuery("from Roles r where r.idRol=:idRol", Roles.class);
+        query.setParameter("idRol", idRol);
+        
+        return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void insertarRol(Roles rol) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.save(rol);
+    }
+
+    @Override
+    @Transactional
+    public void modificarRol(Roles rol) {
+        Session  session  = sessionFactory.getCurrentSession();
+        session.update(rol);
+    }
     
 }

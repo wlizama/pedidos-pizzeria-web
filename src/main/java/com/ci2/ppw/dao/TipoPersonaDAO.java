@@ -14,4 +14,7 @@ import java.util.List;
  */
 public interface TipoPersonaDAO {
     public List<TipoPersona> getListaTipoPersona();
+    public TipoPersona getTipoPersonaById(int idTipoPersona);
+    public void insertarTipoPersona(TipoPersona tipopersona);
+    public void modificarTipoPersona(TipoPersona tipopersona);
 }
