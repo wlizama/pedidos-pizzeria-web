@@ -175,7 +175,6 @@
                                     <label for="cboPersonaTipoDocumento" class="col-sm-4 col-form-label">Tipo de documento</label>
                                     <div class="col-sm-8">
                                         <select id="cboPersonaTipoDocumento" class="custom-select">
-                                            <option selected>( Todos )</option>
                                             <c:forEach
                                                 items="${tdocs}"
                                                 var="tdo"

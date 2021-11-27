@@ -67,7 +67,6 @@ public class MantPersonalController {
         List<Estado> epers = estadoDAO.getListaEstadoByTipo(Constants.TEPERSONA);        
 
         model.addAttribute("tdocs", tdocs);
-        model.addAttribute("roles", roles);
         model.addAttribute("tpers", tpers);
         model.addAttribute("epers", epers);
         
