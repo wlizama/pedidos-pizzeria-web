@@ -150,25 +150,25 @@
                                 <div class="form-group row">
                                     <label for="txtPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaNombres" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaNombres" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaApellidos" class="col-sm-4 col-form-label">Apellidos</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaApellidos" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaApellidos" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaTelefono" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaTelefono" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaTelefono" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaCelular" class="col-sm-4 col-form-label">Celular</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaCelular" maxlength="15" />
+                                        <input type="text" class="form-control" id="txtPersonaCelular" maxlength="15" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -188,7 +188,7 @@
                                 <div class="form-group row">
                                     <label for="txtPersonaDocumento" class="col-sm-4 col-form-label">Nro. documento</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaDocumento" maxlength="15" />
+                                        <input type="text" class="form-control" id="txtPersonaDocumento" maxlength="15" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -244,7 +244,7 @@
                                 <div class="form-group row">
                                     <label for="txtTipoPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtTipoPersonaNombres" maxlength="50" />
+                                        <input type="text" class="form-control" id="txtTipoPersonaNombres" maxlength="50" />
                                     </div>
                                 </div>
                             </form>
