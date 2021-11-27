@@ -16,4 +16,7 @@ import java.util.List;
 public interface RolesDAO {
     
     public List<Roles> getListaRoles();
+    public Roles getRolById(int idRol);
+    public void insertarRol(Roles rol);
+    public void modificarRol(Roles rol);
 }

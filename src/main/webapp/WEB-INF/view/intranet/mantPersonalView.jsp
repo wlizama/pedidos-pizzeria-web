@@ -5,6 +5,8 @@
 <t:mainLayout pageTitle="Pizzeria - Mantenimiento Personal">
     <jsp:attribute name="pageScripts">
         <script src="<c:url value="/resources/intranet/js/mantPersonalPersona.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/mantPersonalTipoPersona.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/mantPersonalRoles.js" />"></script>
     </jsp:attribute>
     <jsp:body>
         <t:mainWrapper contentTitle="Mantenimiento">
@@ -80,7 +82,7 @@
                                 <h4>Tipo de Personal</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipoPersonal">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipoPersonal" data-op="new">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -93,15 +95,7 @@
                                         <th scope="col">Nombre</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mTipoPersonal"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>rr</td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="tbodyLstTipoPersona"></tbody>
                             </table>
                         </div>
                     </div>
@@ -114,7 +108,7 @@
                                 <h4>Roles</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mRoles">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mRoles" data-op="new">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -127,20 +121,7 @@
                                         <th scope="col">Nombre</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <c:forEach
-                                        items="${roles}"
-                                        var="rol"
-                                        >
-                                        <tr>
-                                            <td>
-                                                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mRoles"><i class="fas fa-pen"></i></button>
-                                            </td>
-                                            <th>${rol.idRol}</th>
-                                            <td>${rol.nombre}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
+                                <tbody id="tbodyLstRol"></tbody>
                             </table>
                         </div>
                     </div>
@@ -169,25 +150,25 @@
                                 <div class="form-group row">
                                     <label for="txtPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaNombres" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaNombres" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaApellidos" class="col-sm-4 col-form-label">Apellidos</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaApellidos" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaApellidos" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaTelefono" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaTelefono" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPersonaTelefono" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPersonaCelular" class="col-sm-4 col-form-label">Celular</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaCelular" maxlength="15" />
+                                        <input type="text" class="form-control" id="txtPersonaCelular" maxlength="15" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -207,7 +188,7 @@
                                 <div class="form-group row">
                                     <label for="txtPersonaDocumento" class="col-sm-4 col-form-label">Nro. documento</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaDocumento" maxlength="15" />
+                                        <input type="text" class="form-control" id="txtPersonaDocumento" maxlength="15" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -257,11 +238,20 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <form id="frmTipoPersonal" >
+                                <input type="hidden" id="txtTipoPersonaId" />
+                                <input type="hidden" id="txtTipoPersonaOp" />
+                                <div class="form-group row">
+                                    <label for="txtTipoPersonaNombres" class="col-sm-4 col-form-label">Nombres</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txtTipoPersonaNombres" maxlength="50" />
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnTipoPersonaGuardar" >Guardar</button>
                         </div>
                     </div>
                 </div>
@@ -279,11 +269,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <form>
+                                <form id="frmRol">
+                                    <input type="hidden" id="txtRolId" />
+                                    <input type="hidden" id="txtRolOp" />
                                     <div class="form-group row">
                                         <label for="txtRol" class="col-sm-2 col-form-label">Nombre</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="txtRol">
+                                            <input type="text" class="form-control" id="txtRolNombres">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -299,7 +291,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnRolGuardar">Guardar</button>
                         </div>
                     </div>
                 </div>
