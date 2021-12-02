@@ -1,37 +1,31 @@
 
 function buscarListaCobertura(evt) {
     if (evt) evt.preventDefault();
-    
-return   
+ 
     xhrSession({
-            url: "mant-cobertura/list-personal", // URL solicitada
-            type: "POST", // Método de solicitud
-            data: {
-                idTipoDocIdentidad: idTipoDocIdentidad,
-                numero: numero
-            }
+            url: "mant-cobertura/list-cobertura", // URL solicitada
+            type: "POST" // Método de solicitud
         },
         function (rpt) { // done
-            var tbodyLstPersona = document.getElementById("tbodyLstPersona");
-            tbodyLstPersona.innerHTML = "";
+            var tbodyLstCobertura = document.getElementById("tbodyLstCobertura");
+            tbodyLstCobertura.innerHTML = "";
             if (rpt.length > 0) {
                 for (var i = 0; i < rpt.length; i++) {
-                    tbodyLstPersona.innerHTML += 
+                    tbodyLstCobertura.innerHTML += 
                         "<tr>" +
                             "<td>" +
-                                "<button type='button' class='btn btn-light' data-toggle='modal' data-target='#mPersonal' data-id='" + rpt[i].idPersona + "' data-op='edit' >" +
+                                "<button type='button' class='btn btn-light' data-toggle='modal' data-target='#mCobertura' data-id='" + rpt[i].idDistrito + "' data-op='edit' >" +
                                     "<i class='fas fa-pen'></i>" +
                                 "</button>" +
                             "</td>" +
-                            "<td>" + rpt[i].idPersona + "</td>" +
-                            "<td>" + rpt[i].nombres + "</td>" +
-                            "<td>" + rpt[i].telefono + "</td>" +
-                            "<td>" + rpt[i].estado.nombre + "</td>" +
+                            "<td>" + rpt[i].idDistrito + "</td>" +
+                            "<td>" + rpt[i].nombre + "</td>" +
+                            "<td>" + rpt[i].cobertura + "</td>" +
                         "</tr>";
                 }
             }
             else {
-                tbodyLstDistrito.innerHTML = 
+                tbodyLstCobertura.innerHTML = 
                     "<tr class='text-center'>" +
                         "<td colspan='4'>No hay datos</td>" +
                     "</tr>";
@@ -42,34 +36,28 @@ return
 
 function mostrarmCobertura(event) {
     var dataset = event.relatedTarget.dataset;
-    document.getElementById("txtPersonaOp").value = dataset.op;
+    document.getElementById("txtCoberturaOp").value = dataset.op;
     document.getElementById("frmCobertura").reset();
     if(dataset.op === OP.NEW) {
         document.getElementById("mCoberturaLabel").innerHTML = "Cobertura - Nuevo";
     }
     else if(dataset.op === OP.EDIT) {
         document.getElementById("mCoberturaLabel").innerHTML = "Cobertura - Modificar";
-        getPersona(dataset.id);
+        getCobertura(dataset.id);
     }
 }
 
-function getPersona(idPersona) {
+function getCobertura(idDistrito) {
     
     xhrSession({
-        url: "mant-cobertura/persona/" + idPersona, // URL solicitada
+        url: "mant-cobertura/cobertura/" + idDistrito, // URL solicitada
         type: "GET" // Método de solicitudPersonal - Nuevo
     },
     function (rpt) { // done
         if (rpt) {
-            document.getElementById("txtPersonaId").value = rpt.idPersona;
-            document.getElementById("txtPersonaNombres").value = rpt.nombres;
-            document.getElementById("txtPersonaApellidos").value = rpt.apellidos;
-            document.getElementById("txtPersonaTelefono").value = rpt.telefono;
-            document.getElementById("txtPersonaCelular").value = rpt.celular;
-            document.getElementById("cboPersonaTipoDocumento").value = rpt.documentoIdentidad.tipoDocumentoIdentidad.idTipoDocIdentidad;
-            document.getElementById("txtPersonaDocumento").value = rpt.documentoIdentidad.numero;
-            document.getElementById("cboPersonaTipoPersona").value = rpt.tipoPersona.idTipoPersona;
-            document.getElementById("cboPersonaEstado").value = rpt.estado.idEstado;
+            document.getElementById("txtCoberturaId").value = rpt.idDistrito;
+            document.getElementById("txtDistritoNombres").value = rpt.nombre;
+            document.getElementById("chkCobertura").checked = rpt.cobertura;
         }
     });
 }
@@ -77,31 +65,19 @@ function getPersona(idPersona) {
 function guardarCobertura(evt) {
     if (evt) evt.preventDefault();
     
-    var op = document.getElementById("txtPersonaOp").value;
+    var op = document.getElementById("txtCoberturaOp").value;
 
-    var idPersona = document.getElementById("txtPersonaId").value;
-    var nombres = document.getElementById("txtPersonaNombres").value;
-    var apellidos = document.getElementById("txtPersonaApellidos").value;
-    var telefono = document.getElementById("txtPersonaTelefono").value;
-    var celular = document.getElementById("txtPersonaCelular").value;
-    var idTipoDocIdentidad = document.getElementById("cboPersonaTipoDocumento").value;
-    var numero = document.getElementById("txtPersonaDocumento").value;
-    var idTipoPersona = document.getElementById("cboPersonaTipoPersona").value;
-    var idEstado = document.getElementById("cboPersonaEstado").value;
+    var idDistrito = document.getElementById("txtCoberturaId").value;
+    var nombre = document.getElementById("txtDistritoNombres").value;
+    var cobertura = document.getElementById("chkCobertura").checked ? 1: 0;
     
     xhrSession({
-        url: "mant-cobertura/persona/" + op, // URL solicitada
+        url: "mant-cobertura/cobertura/" + op, // URL solicitada
         type: "POST", // Método de solicitud
         data: {
-            idPersona: idPersona,
-            nombres: nombres,
-            apellidos: apellidos,
-            telefono: telefono,
-            celular: celular,
-            idTipoDocIdentidad: idTipoDocIdentidad,
-            numero: numero,
-            idTipoPersona: idTipoPersona,
-            idEstado: idEstado
+            idDistrito: idDistrito,
+            nombre: nombre,
+            cobertura: cobertura
         }
     },
     function (rpt, state, xhr) { // done
@@ -118,7 +94,7 @@ function init() {
     buscarListaCobertura();
     
     // eventos
-    $("#frmPLBusqueda").submit(buscarListaCobertura);
+    //$("#frmPLBusqueda").submit(buscarListaCobertura);
     
     $('#mCobertura').on('show.bs.modal', mostrarmCobertura);
     

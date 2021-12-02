@@ -39,8 +39,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/intranet")
 public class MantCoberturasController {
-    @Autowired
-    private RolesDAO rolesDAO;
     
     @Autowired
     private CoberturasDAO coberturasDAO;
@@ -49,24 +47,14 @@ public class MantCoberturasController {
     private TipoPersonaDAO tipoPersonaDAO;
     
     @Autowired
-    private DocumentoIdentidadDAO docidentDAO;
-    
-    @Autowired
-    private TipoDocumentoIdentidadDAO tdocDAO;
-    
-    @Autowired
     private EstadoDAO estadoDAO;
     
     @RequestMapping("/mant-cobertura")
     public String getDatos(Model model) {
         
-        List<Roles> roles = rolesDAO.getListaRoles();
-        List<TipoDocumentoIdentidad> tdocs = tdocDAO.getListaTipoDocumentoIdentidad();
         List<TipoPersona> tpers = tipoPersonaDAO.getListaTipoPersona();
         List<Estado> epers = estadoDAO.getListaEstadoByTipo(Constants.TEPERSONA);        
 
-        model.addAttribute("tdocs", tdocs);
-        model.addAttribute("roles", roles);
         model.addAttribute("tpers", tpers);
         model.addAttribute("epers", epers);
         
@@ -74,12 +62,11 @@ public class MantCoberturasController {
     }
     
     @RequestMapping(value = "/mant-cobertura/list-cobertura", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<Distrito> getListaCoberturas(@RequestParam Map<String, String> params) {
+    /**public @ResponseBody List<Distrito> getListaCoberturas(@RequestParam Map<String, String> params) {**/
+    public @ResponseBody List<Distrito> getListaCobertura(@RequestParam Map<Integer, String> params)        {
+        //int idDistrito = Integer.parseInt(params.get("IdDistrito"));
         
-        int idDistrito = Integer.parseInt(params.get("idDistrito"));
-        String numero = params.get("numero").trim();
-        
-        List<Distrito> lstResult = coberturasDAO.getListaCobertura(idDistrito, numero);
+        List<Distrito> lstResult = coberturasDAO.getListaCobertura();
         return lstResult;
     }
     
@@ -90,17 +77,16 @@ public class MantCoberturasController {
         return result;
     }
     
-    @RequestMapping(value = "/mant-cobertura/cobertua/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/mant-cobertura/cobertura/new", method = RequestMethod.POST)
     public ResponseEntity<Distrito> insertarCobertura(@RequestParam Map<String, String> params) {
     
         Distrito distrito = new Distrito(
             0,
             params.get("nombre"),
-            params.get("cobertura"),
-            new Estado(Integer.parseInt(params.get("idEstado")))
+            params.get("cobertura").equals("1")
         );
-
-        /**personaDAO.insertarCoberturas(persona);**/
+//System.out.println(Boolean.parseBoolean(params.get("cobertura")) );
+        coberturasDAO.insertarCobertura(distrito);
         return new ResponseEntity<>(distrito, HttpStatus.OK);
     }
     
@@ -112,8 +98,7 @@ public class MantCoberturasController {
         Distrito distrito = new Distrito(
             Integer.parseInt(params.get("idDistrito")),
             params.get("nombre"),
-            params.get("cobertura"),
-            new Estado(Integer.parseInt(params.get("idEstado")))
+            params.get("cobertura").equals("1")
         );
 
         coberturasDAO.modificarCobertura(distrito);
