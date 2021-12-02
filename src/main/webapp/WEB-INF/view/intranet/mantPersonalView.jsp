@@ -278,12 +278,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Formularios</label>
+                                        <label class="col-sm-2 col-form-label">Accesos</label>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-sm-2"></div>
-                                        <label class="col-sm-10 col-form-label">check</label>
+                                        <div id="divAccesos" class="col-sm-10"></div>
                                     </div>
                                 </form>
                             </div>
