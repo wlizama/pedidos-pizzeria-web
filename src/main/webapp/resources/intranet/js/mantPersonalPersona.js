@@ -26,7 +26,7 @@ function buscarListaPersona(evt) {
                                 "</button>" +
                             "</td>" +
                             "<td>" + rpt[i].idPersona + "</td>" +
-                            "<td>" + rpt[i].nombres + "</td>" +
+                            "<td>" + rpt[i].nombres + " " + rpt[i].apellidos + "</td>" +
                             "<td>" + rpt[i].telefono + "</td>" +
                             "<td>" + rpt[i].estado.nombre + "</td>" +
                         "</tr>";

@@ -42,11 +42,11 @@ function mostrarmRoles(event) {
     }
     else if(dataset.op === OP.EDIT) {
         document.getElementById("mRolesLabel").innerHTML = "Rol - Modificar";
-        getRoles(dataset.id);
+        getRol(dataset.id);
     }
 }
 
-function getRoles(idRol) {
+function getRol(idRol) {
     
     xhrSession({
         url: "mant-personal/rol/" + idRol, // URL solicitada
@@ -56,6 +56,32 @@ function getRoles(idRol) {
         if (rpt) {
             document.getElementById("txtRolId").value = rpt.idRol;
             document.getElementById("txtRolNombres").value = rpt.nombre;
+            
+            xhrSession({
+                url: "acceso/list-by-rol/" + idRol, // URL solicitada
+                type: "GET" // Método de solicitud
+            },
+            function (rpt2) { // done
+                if (rpt2) {
+                    var divAccesos = document.getElementById("divAccesos");
+                    divAccesos.innerHTML = "";
+                    if (rpt2.length > 0) {
+                        for (var i = 0; i < rpt2.length; i++) {
+                            divAccesos.innerHTML += 
+                                "<div class='form-check'>" +
+                                    "<input class='form-check-input' type='checkbox' value='" + rpt2[i].idAcceso + "' id='lblRolAcceso" + rpt2[i].idAcceso + "' " + (rpt2[i].acceso ? "checked" : "") + " >" +
+                                    "<label class='form-check-label' for='lblRolAcceso" + rpt2[i].idAcceso + "'>" +
+                                        rpt2[i].formulario.nombre +
+                                    "</label>" +
+                                "</div>";
+                        }
+                    }
+                    else {
+                        divAccesos.innerHTML = "<label>No hay Accesos</label>";
+                    }
+                }
+            });
+            
         }
     });
 }
@@ -68,12 +94,20 @@ function guardarRol(evt) {
     var idRol = document.getElementById("txtRolId").value;
     var nombre = document.getElementById("txtRolNombres").value;
     
+    var chkAccesos = document.querySelectorAll(".form-check-input");
+    
+    var accesos = [];
+    for (var i = 0; i < chkAccesos.length; i++) {
+        accesos.push(chkAccesos[i].value + "|" + (chkAccesos[i].checked ? 1 : 0));
+    }
+    
     xhrSession({
         url: "mant-personal/rol/" + op, // URL solicitada
         type: "POST", // Método de solicitud
         data: {
             idRol: idRol,
-            nombre: nombre
+            nombre: nombre,
+            accesos: accesos.join()
         }
     },
     function (rpt, state, xhr) { // done

@@ -55,6 +55,13 @@ public class Acceso {
         this.acceso = acceso;
     }
 
+    public Acceso(Integer idAcceso, short acceso, Formulario formulario, Roles roles) {
+        this.idAcceso = idAcceso;
+        this.acceso = acceso;
+        this.formulario = formulario;
+        this.roles = roles;
+    }
+
     public Integer getIdAcceso() {
         return idAcceso;
     }
