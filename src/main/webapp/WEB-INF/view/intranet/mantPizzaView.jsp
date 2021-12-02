@@ -161,21 +161,15 @@
                                 <div class="form-group row">
                                     <label for="txtPizzaNombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPizzaNombre" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPizzaNombre" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtPizzaPrecio" class="col-sm-4 col-form-label">Precio</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPizzaPrecio" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtPizzaPrecio" maxlength="150" />
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtPersonaTelefono" class="col-sm-4 col-form-label">Teléfono</label>
-                                    <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtPersonaTelefono" maxlength="150" />
-                                    </div>
-                                </div>
+                                </div>                                
                                 <div class="form-group row">
                                     <label for="cboPizzaTipo" class="col-sm-4 col-form-label">Tipo</label>
                                     <div class="col-sm-8">
@@ -227,13 +221,13 @@
                                 <div class="form-group row">
                                     <label for="txtTamanhoNombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtTamanhoNombre" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtTamanhoNombre" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="txtTamanhoPorciones" class="col-sm-4 col-form-label">Cant. Porciones</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtTamanhoPorciones" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtTamanhoPorciones" maxlength="150" />
                                     </div>
                                 </div>                                
                             </form>
@@ -264,7 +258,7 @@
                                 <div class="form-group row">
                                     <label for="txtTipoNombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
-                                        <input type="txt" class="form-control" id="txtTipoNombre" maxlength="150" />
+                                        <input type="text" class="form-control" id="txtTipoNombre" maxlength="150" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
