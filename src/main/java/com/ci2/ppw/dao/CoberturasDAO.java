@@ -13,7 +13,7 @@ import java.util.List;
  * @author JoseGaGu
  */
 public interface CoberturasDAO {
-    public List<Distrito> getListaCobertura(int idTipoDocIdentidad, String numero);
+    public List<Distrito> getListaCobertura();
     public Distrito getCoberturaById(int idDistrito);
     public void insertarCobertura(Distrito distrito);
     public void modificarCobertura(Distrito distrito);

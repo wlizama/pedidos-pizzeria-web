@@ -11,11 +11,11 @@
 
             <ul class="nav nav-tabs" id="tMantenimiento" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="fPersonal" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="true">Coberturas</a>
+                    <a class="nav-link active" id="fCobertura" data-toggle="tab" href="#cobertura" role="tab" aria-controls="personal" aria-selected="true">Coberturas</a>
                 </li>
             </ul>
             <div class="tab-content mt-3" id="myTabContent">
-                <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="fPersonal">
+                <div class="tab-pane fade show active" id="cobertura" role="tabpanel" aria-labelledby="fCobertura">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
@@ -35,7 +35,7 @@
                                         <th scope="col">Cobertura</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tbodyLstPersona"></tbody>
+                                <tbody id="tbodyLstCobertura"></tbody>
                             </table>
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         </div>
                         <div class="modal-body">
                             <form id="frmCobertura" >
-                                <input type="hidden" id="txtPersonaId" />
-                                <input type="hidden" id="txtPersonaOp" />
+                                <input type="hidden" id="txtCoberturaId" />
+                                <input type="hidden" id="txtCoberturaOp" />
                                 <div class="form-group row">
                                     <label for="txtDistritoNombres" class="col-sm-4 col-form-label">Distrito</label>
                                     <div class="col-sm-8">
@@ -67,16 +67,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="cboPersonaEstado" class="col-sm-4 col-form-label">Estado</label>
+                                    <label class="col-sm-4 col-form-label">Cobertura</label>
                                     <div class="col-sm-8">
-                                        <select id="cboPersonaEstado" class="custom-select">
-                                            <c:forEach
-                                                items="${epers}"
-                                                var="eper"
-                                                >
-                                                <option value="${eper.idEstado}">${eper.nombre}</option>
-                                            </c:forEach>
-                                        </select>
+                                       <input class="form-check-input" type="checkbox" value="" id="chkCobertura"  checked/>
+                                       <label class="form-check-label" for="chkCobertura">Activo</label>
                                     </div>
                                 </div>
                             </form>

@@ -5,7 +5,9 @@
  */
 package com.ci2.ppw.controller.intranet;
 
+import com.ci2.ppw.dao.AccesoDAO;
 import com.ci2.ppw.dao.RolesDAO;
+import com.ci2.ppw.model.Acceso;
 import com.ci2.ppw.model.Roles;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +29,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/intranet")
 public class MantRolesController {
+    
     @Autowired
     private RolesDAO rolesDAO;
+    
+    @Autowired
+    private AccesoDAO accesoDAO;
     
     @RequestMapping(value = "/mant-personal/list-roles", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<Roles> getListaRoles(@RequestParam Map<String, String> params) {
@@ -63,6 +69,17 @@ public class MantRolesController {
             Integer.parseInt(params.get("idRol")),
             params.get("nombre")
         );
+        
+        String [] accesos = params.get("accesos").split(",");
+        
+        for (int i = 0; i < accesos.length; i++) {
+            String [] acceso = accesos[i].split("\\|");
+            
+            int idAcceso = Integer.parseInt(acceso[0]);
+            short is_acceso = Short.parseShort(acceso[1]);
+            
+            accesoDAO.modificarAcceso(idAcceso, is_acceso);
+        }
 
         rolesDAO.modificarRol(rol);
         return new ResponseEntity<>(rol, HttpStatus.OK);

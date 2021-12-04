@@ -27,34 +27,15 @@ public class CoberturasDAOImpl implements CoberturasDAO{
     
     @Override
     @Transactional
-        public List<Distrito> getListaCobertura(int idDistrito, String numero) {
+        public List<Distrito> getListaCobertura() {
         
         Session  session  = sessionFactory.getCurrentSession();
         Query<Distrito> query = session.createQuery(
-            "from Distrito p where " +
-            "p.idDistrito between :idDistrito_ini and :idDistrito_fin and " +
-            "p.nombre between :numero_ini and :numero_fin and ", 
+            "from Distrito  ",
             Distrito.class
-        );
-        int idDistrito_ini = idDistrito;
-        int idDistrito_fin = idDistrito;
-        String numero_ini = numero;
-        String numero_fin = numero;
-        if (idDistrito == Constants.MIN_INT_FILTER) {
-            idDistrito_ini = Constants.MIN_INT_FILTER;
-            idDistrito_fin = Constants.MAX_INT_FILTER;
-        }
-        
-        if (numero.equals(Constants.MIN_STRING_FILTER)) {
-            numero_ini = Constants.MIN_STRING_FILTER;
-            numero_fin = Constants.MAX_STRING_FILTER;
-        }
-        
-        query.setParameter("idDistrito_ini", idDistrito_ini);
-        query.setParameter("idDistrito_fin", idDistrito_fin);
-        query.setParameter("numero_ini", numero_ini);
-        query.setParameter("numero_fin", numero_fin);
-        query.setParameter("idsuuser", Constants.IDPERSONA_SUUSER);
+        ); 
+
+        //query.setParameter("idsuuser", Constants.IDPERSONA_SUUSER);
         
         List<Distrito> lstResult = query.getResultList();
         
