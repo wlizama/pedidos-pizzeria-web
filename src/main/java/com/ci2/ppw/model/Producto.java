@@ -65,9 +65,14 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto, BigDecimal precio) {
+    public Producto(Integer idProducto, String nombre, String descripcion, BigDecimal precio, String imagen, Estado estado, TipoProducto tipoProducto) {
         this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.precio = precio;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.tipoProducto = tipoProducto;
     }
 
     public Integer getIdProducto() {
