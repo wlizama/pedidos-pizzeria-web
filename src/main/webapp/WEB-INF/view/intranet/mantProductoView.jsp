@@ -3,16 +3,19 @@
     Created on : 05/11/2021, 10:09:15 PM
     Author     : jonas
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/intranet" %>
 
-<t:mainLayout pageTitle="Pizzeria - Mantenimiento Pizza">
+<t:mainLayout pageTitle="Pizzeria - Mantenimiento Producto">
+    <jsp:attribute name="pageScripts">
+        <script src="<c:url value='/resources/intranet/js/mantProducto.js' />"></script>
+    </jsp:attribute>
     <jsp:body>
         <t:mainWrapper contentTitle="Mantenimiento">       
 
             <div class="tab-content mt-3" id="myTabContent">
-                <div class="tab-pane fade show active" id="pizza" role="tabpanel" aria-labelledby="fProducto">
+                <div class="tab-pane fade show active" id="producto" role="tabpanel" aria-labelledby="fProducto">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
@@ -23,24 +26,30 @@
                             </div>
                         </div>
 
-                        <form id="frmPABusqueda" class="form-inline my-3">
+                        <form id="frmPLBusqueda" class="form-inline my-3">
                             <div class="row">
                                 <div class="col">
                                     <label class="my-1">Tipo</label>
                                 </div>
                                 <div class="col">
-                                    <select id="cboPRTipo" class="custom-select mr-2">
-                                        <option value="0" selected>Elegir el tipo de producto</option>
+                                    <select id="cboPLTipoProducto" class="custom-select mr-2">
+                                        <option value="0" selected>( Todos )</option>
+                                        <c:forEach
+                                            items="${tprod}"
+                                            var="tdo"
+                                            >
+                                            <option value="${tdo.idTipoProducto}">${tdo.nombre}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col">
                                     <label class="my-1">Nombre</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" id="txtProductoNombre" maxlength="150" />
+                                    <input type="text" class="form-control" id="txtProductoNombre2" maxlength="150" />
                                 </div>
                                 <div class="col">
-                                    <button id="btnPABuscar" type="submit" class="btn btn-primary">Buscar</button>
+                                    <button id="btnPLBuscar" type="submit" class="btn btn-primary">Buscar</button>
                                 </div>
                             </div>
                         </form>
@@ -51,7 +60,7 @@
                                     <tr>                                        
                                         <th scope="col"></th>
                                         <th scope="col">Id</th>
-                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Nombre</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Precio</th>
                                         <th scope="col">Tipo</th>
@@ -102,10 +111,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="cboProductoTipo" class="col-sm-4 col-form-label">Tipo</label>
+                                    <label for="cboProductoTipoProducto" class="col-sm-4 col-form-label">Tipo</label>
                                     <div class="col-sm-8">
-                                        <select id="cboProductoTipo" class="custom-select">
-                                            <option selected>Seleccionar tipo de pizza</option>                                            
+                                       <select id="cboProductoTipoProducto" class="custom-select">
+                                            <c:forEach
+                                                items="${tprod}"
+                                                var="tdo"
+                                                >
+                                                <option value="${tdo.idTipoProducto}">${tdo.nombre}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>                                
@@ -113,7 +127,12 @@
                                     <label for="cboProductoEstado" class="col-sm-4 col-form-label">Estado</label>
                                     <div class="col-sm-8">
                                         <select id="cboProductoEstado" class="custom-select">
-                                            <option selected>Seleccionar estado</option>
+                                            <c:forEach
+                                                items="${eprod}"
+                                                var="eper"
+                                                >
+                                                <option value="${eper.idEstado}">${eper.nombre}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
@@ -132,7 +151,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary" id="btnPizzaGuardar" >Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnProductoGuardar" >Guardar</button>
                         </div>
                     </div>
                 </div>
