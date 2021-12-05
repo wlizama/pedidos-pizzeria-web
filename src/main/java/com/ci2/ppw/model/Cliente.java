@@ -49,6 +49,13 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
+    public Cliente(Integer idCliente, String nombreUsuario, String contrasenha, Persona persona) {
+        this.idCliente = idCliente;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenha = contrasenha;
+        this.persona = persona;
+    }
+    
     public Integer getIdCliente() {
         return idCliente;
     }

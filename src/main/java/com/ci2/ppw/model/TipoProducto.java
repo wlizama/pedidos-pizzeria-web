@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
  * @author wilderlizama
  */
 @Entity
-@Table(name = "tipoproducto")
+@Table(name = "tipoProducto")
 public class TipoProducto {
 
     @Id
