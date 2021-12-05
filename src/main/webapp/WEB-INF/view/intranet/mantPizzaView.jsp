@@ -3,11 +3,15 @@
     Created on : 05/11/2021, 10:09:15 PM
     Author     : jonas
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/intranet" %>
 
 <t:mainLayout pageTitle="Pizzeria - Mantenimiento Pizza">
+    <jsp:attribute name="pageScripts">        
+        <script src="<c:url value="/resources/intranet/js/mantPizzaTipoPizza.js" />"></script>
+        <script src="<c:url value="/resources/intranet/js/mantPizzaTamanho.js" />"></script>
+    </jsp:attribute>
     <jsp:body>
         <t:mainWrapper contentTitle="Mantenimiento">       
             <ul class="nav nav-tabs" id="tMantenimiento" role="tablist">
@@ -18,7 +22,7 @@
                     <a class="nav-link" id="fTamanho" data-toggle="tab" href="#tamanho" role="tab" aria-controls="tamanho" aria-selected="false">Tamaño</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="fTipo" data-toggle="tab" href="#tipo" role="tab" aria-controls="tipo" aria-selected="false">Tipo</a>
+                    <a class="nav-link" id="fTipo" data-toggle="tab" href="#tipo-pizza" role="tab" aria-controls="tipo-pizza" aria-selected="false">Tipo</a>
                 </li>
             </ul>
             <div class="tab-content mt-3" id="myTabContent">
@@ -87,21 +91,13 @@
                                         <th scope="col">Porciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mTamanho"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>la mejor pizza de todas</td>
-                                        <td></td>
-                                    </tr>
+                                <tbody id="tbodyLstTamanho">                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="tipo" role="tabpanel" aria-labelledby="fTipo">
+                <div class="tab-pane fade" id="tipo-pizza" role="tabpanel" aria-labelledby="fTipoPizza">
 
                     <div class="container-fluid">
                         <div class="row my-2">
@@ -109,7 +105,7 @@
                                 <h4>Tipo</h4>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipo">+ Agregar Nuevo</button>
+                                <button class="btn btn-success float-right" data-toggle="modal" data-target="#mTipoPizza">+ Agregar Nuevo</button>
                             </div>
                         </div>
 
@@ -123,16 +119,7 @@
                                         <th scope="col">Descripción</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#mTipo"><i class="fas fa-pen"></i></button>
-                                        </td>
-                                        <th>1</th>
-                                        <td>la mejor pizza de todas</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="tbodyLstTipoPizza"></tbody>
                             </table>
                         </div>
                     </div>
@@ -241,7 +228,7 @@
             </div>
 
             <!-- Tipo -->
-            <div class="modal fade" id="mTipo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mTipooLabel" aria-hidden="true">
+            <div class="modal fade" id="mTipoPizza" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mTipooLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -272,7 +259,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-primary" id="btnTipoPizzaGuardar">Guardar</button>
                         </div>
                     </div>
                 </div>
