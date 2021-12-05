@@ -66,13 +66,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mPersonalLabel">Personal</h5>
+                            <h5 class="modal-title" id="mClienteLabel">Cliente</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="frmPersonal" >
+                            <form id="frmCliente" >
                                 <input type="hidden" id="txtClienteId" />
                                 <input type="hidden" id="txtClienteOp" />
                                 <div class="form-group row">
@@ -115,7 +115,20 @@
                                 <div class="form-group row">
                                     <label for="txtNroDocumento" class="col-sm-4 col-form-label">Nro de Doc.</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="txtNroDocumento">
+                                        <input type="text" class="form-control" id="txtDocumento">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="txtNroDocumento" class="col-sm-4 col-form-label">Estado</label>
+                                    <div class="col-sm-8">
+                                        <select id="cboEstado" class="custom-select">
+                                            <c:forEach
+                                                items="${eclis}"
+                                                var="ecli"
+                                                >
+                                                <option value="${ecli.idEstado}">${ecli.nombre}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -123,6 +136,50 @@
                                         <button type="button" class="btn btn-success d-inline-block " data-toggle="modal" data-target="#exampleModal" data-op="new"><i class="fas fa-plus"></i> Agregar dirección</button>
                                     </div>
                                 </div>
+                                <div class="form-group row d-none">
+                                    <div class="col-sm-12">
+                                        <form>
+                                            <hr>
+                                            <fieldset>
+                                                <legend>Dirección de cliente</legend>
+                                                <div class="form-group row">
+                                                    <label for="txtCliDirCliente" class="col-sm-4 col-form-label">Cliente:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="txtCliDirCliente">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="txtCliDirDireccion" class="col-sm-4 col-form-label">Direccion:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="txtCliDirDireccion">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="txtCliDirReferencia" class="col-sm-4 col-form-label">Referencia:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="txtCliDirReferencia">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="chkCliDirDireccionXDefecto" class="col-sm-4 col-form-label">Dirección por defecto?</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-check-input" type="checkbox" id="chkCliDirDireccionXDefecto">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 text-center">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">< Cancelar</button>
+                                                    </div>
+                                                    <div class="col-sm-6 text-center">
+                                                        <button type="button" class="btn btn-primary">Guardar dirección</button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <hr>
+                                        </form>
+                                    </div>
+                                </div>
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <div class="table-responsive">
@@ -143,7 +200,7 @@
                                                         <td>Cerca a un colegio</td>
                                                         <td>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked disabled>
                                                             </div>
                                                         </td>
                                                         <td>
@@ -155,52 +212,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="mClienteDireccion" tabindex="-1" aria-labelledby="mClienteDireccion" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar/Modificar Dirección</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Cliente:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Dirección:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Referencia:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">Dirección por defecto</label>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">x Close</button>
+                            <button type="button" class="btn btn-primary" id="btnClienteGuardar" >Guardar</button>
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>           
         </t:mainWrapper>
     </jsp:body>
 </t:mainLayout>

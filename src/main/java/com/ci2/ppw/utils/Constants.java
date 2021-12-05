@@ -68,4 +68,7 @@ public class Constants {
     public static final int EPIZZA_ANULADO = 33;
     public static final int EPIZZA_DISPONIBLE = 34;
     public static final int EPIZZA_NO_DISPONIBLE = 35;
+    
+    // Tipos
+    public static final int TPCLIENTE = 12; // tipo persona cliente
 }

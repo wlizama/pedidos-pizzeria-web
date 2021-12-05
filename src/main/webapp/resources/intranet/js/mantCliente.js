@@ -58,7 +58,7 @@ function mostrarmCliente(event) {
 function getCliente(idCliente) {
     
     xhrSession({
-        url: "mant-cliente/persona/" + idCliente, // URL solicitada
+        url: "mant-clientes/" + idCliente, // URL solicitada
         type: "GET" // Método de solicitud
     },
     function (rpt) { // done
@@ -82,17 +82,16 @@ function guardarCliente(evt) {
     var op = document.getElementById("txtClienteOp").value;
 
     var idCliente = document.getElementById("txtClienteId").value;
-    var nombres = document.getElementById("txtClienteNombres").value;
-    var apellidos = document.getElementById("txtClienteApellidos").value;
-    var telefono = document.getElementById("txtClienteTelefono").value;
-    var celular = document.getElementById("txtClienteCelular").value;
-    var idTipoDocIdentidad = document.getElementById("cboClienteTipoDocumento").value;
-    var numero = document.getElementById("txtClienteDocumento").value;
-    var idTipoCliente = document.getElementById("cboClienteTipoCliente").value;
-    var idEstado = document.getElementById("cboClienteEstado").value;
+    var nombres = document.getElementById("txtNombres").value;
+    var apellidos = document.getElementById("txtApellidos").value;
+    var telefono = document.getElementById("txtTelefono").value;
+    var celular = document.getElementById("txtCelular").value;
+    var idTipoDocIdentidad = document.getElementById("cboTipoDocumento").value;
+    var numero = document.getElementById("txtDocumento").value;
+    var idEstado = document.getElementById("cboEstado").value;
     
     xhrSession({
-        url: "mant-cliente/persona/" + op, // URL solicitada
+        url: "mant-clientes/" + op, // URL solicitada
         type: "POST", // Método de solicitud
         data: {
             idCliente: idCliente,
@@ -102,7 +101,6 @@ function guardarCliente(evt) {
             celular: celular,
             idTipoDocIdentidad: idTipoDocIdentidad,
             numero: numero,
-            idTipoCliente: idTipoCliente,
             idEstado: idEstado
         }
     },
@@ -122,9 +120,9 @@ function init() {
 //    // eventos
 //    $("#frmPLBusqueda").submit(buscarListaCliente);
 //    
-//    $('#mCliente').on('show.bs.modal', mostrarmCliente);
+    $('#mCliente').on('show.bs.modal', mostrarmCliente);
 //    
-//    $('#btnClienteGuardar').on('click', guardarCliente);
+    $('#btnClienteGuardar').on('click', guardarCliente);
 }
 
 $(document).ready(init);
