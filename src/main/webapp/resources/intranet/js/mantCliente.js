@@ -115,7 +115,7 @@ function guardarCliente(evt) {
 
 function init() {
     
-//    buscarListaCliente();
+    buscarListaCliente();
 //    
 //    // eventos
 //    $("#frmPLBusqueda").submit(buscarListaCliente);

@@ -125,3 +125,10 @@ select * from usuario;
 update usuario set contrasenha = '123456';
 update usuario set contrasenha = '$2a$12$I.BUylSPcwys16TbWjkvd.Tu.oi9sCvap5qXpz3bqUKFaqd2zKrde'; # columna contrasenha a 200
 
+INSERT INTO `tipoProducto` (`idTipoProducto`, `nombre`, `descripcion`) VALUES
+(1, 'Piqueos', 'Detalle Piqueos'),
+(2, 'Bebidas', 'Detalle Bebidas'),
+(3, 'Pizzas', 'Detalle Pizzas'),
+(4, 'Pastas', 'Detalle Pastas');
+
+select * from tipoProducto

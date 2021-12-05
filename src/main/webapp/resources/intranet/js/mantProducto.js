@@ -77,6 +77,7 @@ function getProducto(idProducto) {
             document.getElementById("txtProductoDescripcion").value = rpt.descripcion;
             document.getElementById("txtProductoPrecio").value = rpt.precio;
             document.getElementById("txtProductoImagen").value = rpt.imagen;
+            document.getElementById("imgProductoImagen").src = rpt.imagen;
             document.getElementById("cboProductoTipoProducto").value = rpt.tipoProducto.idTipoProducto;
             document.getElementById("cboProductoEstado").value = rpt.estado.idEstado;
         }

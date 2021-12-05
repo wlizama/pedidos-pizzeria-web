@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <img id="ProductoImagen" class="img-fluid" src="https://www.themgroup.co.uk/wp-content/uploads/2020/12/landscape-placeholder.png" onerror="this.src = 'https://fotografias-compromiso.atresmedia.com/clipping/cmsimages01/2019/05/29/9B89AC82-4176-4127-89A2-F38F13E0A84E/69.jpg'" />
+                                        <img id="imgProductoImagen" class="img-fluid" src="https://www.themgroup.co.uk/wp-content/uploads/2020/12/landscape-placeholder.png" onerror="this.src = 'https://fotografias-compromiso.atresmedia.com/clipping/cmsimages01/2019/05/29/9B89AC82-4176-4127-89A2-F38F13E0A84E/69.jpg'" />
                                     </div>
                                 </div>
                             </form>
